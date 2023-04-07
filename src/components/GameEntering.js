@@ -12,7 +12,7 @@ const socket = io.connect("https://songs-gusses.onrender.com/api/v1/newPlay", {
   transports: ["websocket"],
 });
 export default function GameEntering() {
-  //const [goRoom, setGoRoom] = useState(false);
+  const [goRoom, setGoRoom] = useState(false);
   const { GetPin } = useResult();
   const {
     innerContent,
@@ -24,10 +24,11 @@ export default function GameEntering() {
     setNameError,
     pinError,
     setPinError,
-    joinsPeople,
-    setJoinsPeople,
-    peopleJoin,
-    setEnterToGame,
+    // joinsPeople,
+    // setJoinsPeople,
+    // peopleJoin,
+    // setEnterToGame,
+    //setRoom,
   } = useContext(StatesContext);
   // const [newPin, setNewPin] = useState("");
   // const [newName, setNewName] = useState("");
@@ -37,7 +38,7 @@ export default function GameEntering() {
     ["Choose a name", newName, nameError],
     ["Enter your pin", newPin, pinError],
   ];
-
+  const [joinsPeople, setJoinsPeople] = useState("");
   const [thePin, setThePin] = useState("");
   const [presentPin, setPresentPin] = useState(false);
   const handleGetPin = async () => {
@@ -102,10 +103,10 @@ export default function GameEntering() {
             }
           );
         }
-
+        setGoRoom(true);
         socket.emit("join_room", newPin);
         socket.emit("add_participant", newName);
-        setEnterToGame(true);
+        //setEnterToGame(true);
         // setPeopleJoin(true);
       }
     }
@@ -124,7 +125,7 @@ export default function GameEntering() {
       setJoinsPeople(joinsPeople + data);
       //setPeopleJoin(true);
     });
-  }, [joinsPeople, setJoinsPeople, peopleJoin]);
+  }, [joinsPeople]);
   return (
     <GameEnteringStyle>
       <div className="diveUp">
@@ -145,8 +146,9 @@ export default function GameEntering() {
 
         <Btn theValue="Enter game" theAction={CheckData} key={1} />
       </div>
-
-      <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
+      {goRoom && (
+        <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
+      )}
 
       <PinRenderStyle className="diveUp">
         {innerContent && !thePin && (
