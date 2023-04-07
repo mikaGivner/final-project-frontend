@@ -8,6 +8,7 @@ export function StatesContextProvider(props) {
   const [pinError, setPinError] = useState("");
   const [room, setRoom] = useState("");
   const [joinsPeople, setJoinsPeople] = useState("");
+  const [enterToGame, setEnterToGame] = useState(false);
   const contextValue = {
     innerContent,
     setInnerContent,
@@ -23,6 +24,8 @@ export function StatesContextProvider(props) {
     setRoom,
     joinsPeople,
     setJoinsPeople,
+    enterToGame,
+    setEnterToGame,
   };
 
   return (

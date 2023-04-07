@@ -26,6 +26,7 @@ export default function GameEntering() {
     setPinError,
     joinsPeople,
     setJoinsPeople,
+    setEnterToGame,
   } = useContext(StatesContext);
   // const [newPin, setNewPin] = useState("");
   // const [newName, setNewName] = useState("");
@@ -103,6 +104,7 @@ export default function GameEntering() {
 
         socket.emit("join_room", newPin);
         socket.emit("add_participant", newName);
+        setEnterToGame(true);
       }
     }
   };
