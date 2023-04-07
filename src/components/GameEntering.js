@@ -12,7 +12,7 @@ const socket = io.connect("https://songs-gusses.onrender.com/api/v1/newPlay", {
   transports: ["websocket"],
 });
 export default function GameEntering() {
-  const [goRoom, setGoRoom] = useState(false);
+  //const [goRoom, setGoRoom] = useState(false);
   const { GetPin } = useResult();
   const {
     innerContent,
@@ -100,7 +100,7 @@ export default function GameEntering() {
             }
           );
         }
-        setGoRoom(true);
+
         socket.emit("join_room", newPin);
         socket.emit("add_participant", newName);
       }
@@ -119,7 +119,7 @@ export default function GameEntering() {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
     });
-  }, [joinsPeople]);
+  }, [joinsPeople, setJoinsPeople]);
   return (
     <GameEnteringStyle>
       <div className="diveUp">
