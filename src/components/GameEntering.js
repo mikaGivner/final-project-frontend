@@ -68,7 +68,9 @@ export default function GameEntering() {
     if (!newPin) setPinError("Please enter a pin");
     else {
       try {
-        await axios.get(`http://localhost:5000/api/v1/newPlay/${newPin}`);
+        await axios.get(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
+        );
         greatPin = true;
       } catch {
         setPinError("This pin is not exist");
@@ -77,19 +79,25 @@ export default function GameEntering() {
 
     if (greatName && greatPin) {
       let game = await axios.get(
-        `http://localhost:5000/api/v1/newPlay/${newPin}`
+        `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
       );
       if (game.data.data.participants.includes(newName)) {
         setNameError("This name exists in the game you are trying to access");
       } else {
         const updatedPartisipants = [...game.data.data.participants, newName];
-        await axios.put(`http://localhost:5000/api/v1/newPlay/${newPin}`, {
-          participants: updatedPartisipants,
-        });
+        await axios.put(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
+          {
+            participants: updatedPartisipants,
+          }
+        );
         if (newPin === PinRender) {
-          await axios.put(`http://localhost:5000/api/v1/newPlay/${newPin}`, {
-            admin: newName,
-          });
+          await axios.put(
+            `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
+            {
+              admin: newName,
+            }
+          );
         }
         setGoRoom(true);
         socket.emit("join_room", newPin);
