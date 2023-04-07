@@ -24,7 +24,6 @@ export default function GameEntering() {
     setNameError,
     pinError,
     setPinError,
-    setRoom,
   } = useContext(StatesContext);
   // const [newPin, setNewPin] = useState("");
   // const [newName, setNewName] = useState("");
