@@ -125,7 +125,7 @@ export default function GameEntering() {
       setJoinsPeople(joinsPeople + data);
       //setPeopleJoin(true);
     });
-  }, [joinsPeople]);
+  }, [joinsPeople, goRoom]);
   return (
     <GameEnteringStyle>
       <div className="diveUp">
