@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import "./AnimationsAndDefineds.css";
 import { StatesContext } from "./ContextFile";
-import EnteringPage from "./components/EnteringPage";
+//import EnteringPage from "./components/EnteringPage";
 import {
   GameEntering,
   GameInfo,
@@ -17,7 +17,10 @@ import {
 // });
 
 function App() {
-  const { setInnerContent, enterToGame } = useContext(StatesContext);
+  const {
+    setInnerContent,
+    //enterToGame
+  } = useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
   // const [room, setRoom] = useState("");
@@ -63,7 +66,14 @@ function App() {
         <LandingPage />
       ) : (
         <>
-          {enterToGame ? (
+          <OpenPage>
+            <GamePresentation className="diveUp">
+              {titleGame && <GameInfo />}
+            </GamePresentation>
+
+            <GameEntering />
+          </OpenPage>
+          {/* {enterToGame ? (
             <EnteringPage />
           ) : (
             <OpenPage>
@@ -73,7 +83,7 @@ function App() {
 
               <GameEntering />
             </OpenPage>
-          )}
+          )} */}
         </>
       )}
 
