@@ -7,6 +7,7 @@ export function StatesContextProvider(props) {
   const [nameError, setNameError] = useState("");
   const [pinError, setPinError] = useState("");
   const [room, setRoom] = useState("");
+  const [joinsPeople, setJoinsPeople] = useState("");
   const contextValue = {
     innerContent,
     setInnerContent,
@@ -20,6 +21,8 @@ export function StatesContextProvider(props) {
     setPinError,
     room,
     setRoom,
+    joinsPeople,
+    setJoinsPeople,
   };
 
   return (

@@ -8,7 +8,7 @@ import useResult from "../Hooks/useResult.js";
 import axios from "axios";
 import io from "socket.io-client";
 
-const socket = io.connect("https://songs-gusses.onrender.com", {
+const socket = io.connect("https://songs-gusses.onrender.com/api/v1/newPlay", {
   transports: ["websocket"],
 });
 export default function GameEntering() {
@@ -24,6 +24,8 @@ export default function GameEntering() {
     setNameError,
     pinError,
     setPinError,
+    joinsPeople,
+    setJoinsPeople,
   } = useContext(StatesContext);
   // const [newPin, setNewPin] = useState("");
   // const [newName, setNewName] = useState("");
@@ -33,7 +35,7 @@ export default function GameEntering() {
     ["Choose a name", newName, nameError],
     ["Enter your pin", newPin, pinError],
   ];
-  const [joinsPeople, setJoinsPeople] = useState("");
+
   const [thePin, setThePin] = useState("");
   const [presentPin, setPresentPin] = useState(false);
   const handleGetPin = async () => {
@@ -139,9 +141,9 @@ export default function GameEntering() {
         <Btn theValue="Enter game" theAction={CheckData} key={1} />
       </div>
 
-      {goRoom && (
+      {/* {goRoom && (
         <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
-      )}
+      )} */}
       <PinRenderStyle className="diveUp">
         {innerContent && !thePin && (
           <Btn
