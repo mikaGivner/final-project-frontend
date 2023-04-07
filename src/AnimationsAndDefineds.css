@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;700&family=Changa+One&family=Dosis:wght@200&display=swap");
+
+* {
+  box-sizing: 0;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --MainTitle: "Alkatra", cursive;
+  --Title: "Changa One", cursive;
+  --InnerText: "Dosis", sans-serif;
+}
+
+.inputPresent {
+  display: flex;
+  flex-direction: column;
+}
+body {
+  width: 100vw;
+}
+
+.open {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  font-size: 10rem;
+}
+.open span {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  animation: open 1s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes open {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+}
+.gameName {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  font-size: 5rem;
+  margin-left: 20rem;
+}
+.gameName span {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  animation: gameName 1s infinite;
+  animation-delay: calc(0.1s * var(--j));
+}
+@keyframes gameName {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+}
+
+.lineUp {
+  animation: 2s anim-lineUp ease-out;
+}
+@keyframes anim-lineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+.diveUp {
+  animation: 0.5s divUp ease-out forwards;
+  position: relative;
+}
+
+@keyframes divUp {
+  0% {
+    top: -50px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+h1 {
+  font-family: var(--Title);
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
+p {
+  margin-top: 3rem;
+  font-family: var(--InnerText);
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  font-weight: 1.6rem;
+  transform: scale(0.94);
+  animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+}
+@keyframes scale {
+  100% {
+    transform: scale(1);
+  }
+}

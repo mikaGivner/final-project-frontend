@@ -1,52 +1,80 @@
-import "./App.css";
-import io from "socket.io-client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import "./AnimationsAndDefineds.css";
+import { StatesContext } from "./ContextFile";
+import EnteringPage from "./components/EnteringPage";
+import {
+  GameEntering,
+  GameInfo,
+  LandingPage,
+  OpenPage,
+  GamePresentation,
+} from "./ImportsComponents";
 
-const socket = io.connect("https://songs-gusses.onrender.com", {
-  transports: ["websocket"],
-});
-// const socket = io.connect("http://localhost:5000");
-// const socket = io.connect("https://extraordinary-rugelach-ce47fd.netlify.app");
+// import io from "socket.io-client";
+
+// const socket = io.connect("https://songs-gusses.onrender.com", {
+//   transports: ["websocket"],
+// });
 
 function App() {
-  const [room, setRoom] = useState("");
-  const [participantsCount, setParticipantsCount] = useState(4);
-  const [newName, setNewName] = useState("");
+  const { setInnerContent, room, setRoom } = useContext(StatesContext);
+  const [startSection, setStartSection] = useState(true);
+  const [titleGame, setTitleGame] = useState(false);
+  // const [room, setRoom] = useState("");
 
-  const [joinsPeople, setJoinsPeople] = useState("");
-  const [goRoom, setGoRoom] = useState(false);
+  // const [joinsPeople, setJoinsPeople] = useState("");
+  // const [goRoom, setGoRoom] = useState(false);
 
-  const UpdateName = (e) => {
-    setNewName(e.target.value);
-  };
-  const UpdateRoom = (e) => {
-    setRoom(e.target.value);
-    setGoRoom(false);
-  };
-  // const joinRoom=()=>{
-  //   if(room!==""){
-  //     socket.emit("join_room", room);
-  //   }
+  // const UpdateRoom = (e) => {
+  //   setRoom(e.target.value);
+  //   setGoRoom(false);
   // };
 
-  const JoinGame = () => {
-    setGoRoom(true);
-    if (room !== "") {
-      socket.emit("join_room", room);
-    }
-    socket.emit("add_participant", newName);
-    setParticipantsCount(Number(participantsCount) - 1);
-  };
+  // const JoinGame = () => {
+  //   setGoRoom(true);
+  //   if (room !== "") {
+  //     socket.emit("join_room", room);
+  //   }
+  //   socket.emit("add_participant", newName);
+
+  // };
 
   useEffect(() => {
-    socket.on("participant_added", (data) => {
-      setParticipantsCount(Number(participantsCount) - 1);
-      setJoinsPeople(joinsPeople + data);
-    });
-  }, [joinsPeople, participantsCount]);
+    setTimeout(() => {
+      setStartSection(false);
+    }, "3000");
+    setTimeout(() => {
+      setTitleGame(true);
+    }, "3000");
+    setTimeout(() => {
+      setInnerContent(true);
+    }, "3500");
+  }, [setInnerContent]);
+  // useEffect(() => {
+  //   socket.on("participant_added", (data) => {
+  //
+  //     setJoinsPeople(joinsPeople + data);
+  //   });
+  // }, [joinsPeople, participantsCount]);
+
   return (
-    <div className="App">
-      <label>Choose a name:</label>
+    <>
+      {startSection ? (
+        <LandingPage />
+      ) : (
+        <>
+          <OpenPage>
+            <GamePresentation className="diveUp">
+              {titleGame && <GameInfo />}
+            </GamePresentation>
+
+            <GameEntering />
+          </OpenPage>
+          <EnteringPage />
+        </>
+      )}
+
+      {/* <label>Choose a name:</label>
       <input type="text" value={newName} onChange={UpdateName} />
       <div>
         <label>Choose a room:</label>
@@ -59,8 +87,8 @@ function App() {
         <div>
           join to room{room}:{newName},{joinsPeople}
         </div>
-      )}
-    </div>
+      )} */}
+    </>
   );
 }
 
