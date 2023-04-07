@@ -112,7 +112,7 @@ export default function GameEntering() {
       setNameError("");
     } else {
       setNewPin(e.target.value);
-      setPinError("Please enter a pin");
+      setPinError("");
     }
   };
   useEffect(() => {
