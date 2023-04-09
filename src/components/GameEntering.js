@@ -103,7 +103,7 @@ export default function GameEntering() {
         setGoRoom(true);
         socket.emit("join_room", newPin);
         socket.emit("add_participant", newName, newPin);
-        socket.emit("write_console", theName);
+        socket.emit("write_console", newName);
       }
     }
   };
