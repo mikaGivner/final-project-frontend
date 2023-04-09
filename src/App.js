@@ -17,10 +17,7 @@ import {
 // });
 
 function App() {
-  const {
-    setInnerContent,
-    //enterToGame
-  } = useContext(StatesContext);
+  const { setInnerContent, goRoom } = useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
   // const [room, setRoom] = useState("");
@@ -66,15 +63,7 @@ function App() {
         <LandingPage />
       ) : (
         <>
-          <OpenPage>
-            <GamePresentation className="diveUp">
-              {titleGame && <GameInfo />}
-            </GamePresentation>
-
-            <GameEntering />
-          </OpenPage>
-          <EnteringPage />
-          {/* {enterToGame ? (
+          {goRoom ? (
             <EnteringPage />
           ) : (
             <OpenPage>
@@ -84,7 +73,7 @@ function App() {
 
               <GameEntering />
             </OpenPage>
-          )} */}
+          )}
         </>
       )}
 
