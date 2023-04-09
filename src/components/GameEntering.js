@@ -25,6 +25,7 @@ export default function GameEntering() {
     setPinError,
     joinsPeople,
     setJoinsPeople,
+    goRoom,
     setGoRoom,
   } = useContext(StatesContext);
 
@@ -138,7 +139,9 @@ export default function GameEntering() {
         })}
         <Btn theValue="Enter game" theAction={CheckData} key={1} />
       </div>
-
+      {goRoom && (
+        <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
+      )}
       <PinRenderStyle className="diveUp">
         {innerContent && !thePin && (
           <Btn
