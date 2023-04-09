@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import "./AnimationsAndDefineds.css";
 import { StatesContext } from "./ContextFile";
-//import EnteringPage from "./components/EnteringPage";
+import EnteringPage from "./components/EnteringPage";
 import {
   GameEntering,
   GameInfo,
