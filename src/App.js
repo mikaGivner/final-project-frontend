@@ -21,7 +21,6 @@ function App() {
   const { setInnerContent, goRoom } = useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
-  // const [room, setRoom] = useState("");
 
   // const [joinsPeople, setJoinsPeople] = useState("");
   // const [goRoom, setGoRoom] = useState(false);
