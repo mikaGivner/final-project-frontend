@@ -10,12 +10,15 @@ import "../AnimationsAndDefineds.css";
 
 export default function EnteringPage() {
   //const placeHolders = ["Choose a name", "Enter your pin"];
-  const { joinPeople } = useContext(StatesContext);
+  const { joinsPeople, goRoom } = useContext(StatesContext);
+
   return (
     <EnteringPageStyle>
       <h1 style={{ color: "#000" }}>Participants for this game</h1>
       <ParticipantsPresentationStyle>
-        {joinPeople}
+        {goRoom && (
+          <div style={{ color: "#000" }}>people who join: {joinsPeople}</div>
+        )}
       </ParticipantsPresentationStyle>
     </EnteringPageStyle>
   );

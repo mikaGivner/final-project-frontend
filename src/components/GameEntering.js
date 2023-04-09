@@ -11,7 +11,7 @@ const socket = io.connect("https://songs-gusses.onrender.com", {
   transports: ["websocket"],
 });
 export default function GameEntering() {
-  const [goRoom, setGoRoom] = useState(false);
+  // const [goRoom, setGoRoom] = useState(false);
   const { GetPin } = useResult();
   const {
     innerContent,
@@ -25,6 +25,8 @@ export default function GameEntering() {
     setPinError,
     joinsPeople,
     setJoinsPeople,
+    goRoom,
+    setGoRoom,
   } = useContext(StatesContext);
 
   const placeHolders = [
