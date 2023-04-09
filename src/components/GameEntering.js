@@ -27,6 +27,8 @@ export default function GameEntering() {
     setJoinsPeople,
     goRoom,
     setGoRoom,
+    arr,
+    setArr,
   } = useContext(StatesContext);
 
   const placeHolders = [
