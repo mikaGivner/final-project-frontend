@@ -7,8 +7,7 @@ import Btn from "./Btn";
 import useResult from "../Hooks/useResult.js";
 import axios from "axios";
 import io from "socket.io-client";
-
-const socket = io.connect("https://songs-gusses.onrender.com/api/v1/newPlay", {
+const socket = io.connect("https://songs-gusses.onrender.com", {
   transports: ["websocket"],
 });
 export default function GameEntering() {
@@ -24,11 +23,6 @@ export default function GameEntering() {
     setNameError,
     pinError,
     setPinError,
-    // joinsPeople,
-    // setJoinsPeople,
-    // peopleJoin,
-    // setEnterToGame,
-    //setRoom,
   } = useContext(StatesContext);
   // const [newPin, setNewPin] = useState("");
   // const [newName, setNewName] = useState("");
@@ -59,7 +53,6 @@ export default function GameEntering() {
     setNameError("");
     setPinError("");
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{2,10}$/;
-
     //checking a name
     if (!newName) setNameError("Please choose a name");
     else if (!regex.test(newName))
@@ -67,7 +60,6 @@ export default function GameEntering() {
         "Please check if the name: contain a number, upper and lower case and in length between 2-10 characters "
       );
     else greatName = true;
-
     //checking a pin
     if (!newPin) setPinError("Please enter a pin");
     else {
@@ -80,7 +72,6 @@ export default function GameEntering() {
         setPinError("This pin is not exist");
       }
     }
-
     if (greatName && greatPin) {
       let game = await axios.get(
         `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
@@ -106,8 +97,6 @@ export default function GameEntering() {
         setGoRoom(true);
         socket.emit("join_room", newPin);
         socket.emit("add_participant", newName);
-        //setEnterToGame(true);
-        // setPeopleJoin(true);
       }
     }
   };
@@ -117,15 +106,14 @@ export default function GameEntering() {
       setNameError("");
     } else {
       setNewPin(e.target.value);
-      setPinError("");
+      setPinError("Please enter a pin");
     }
   };
   useEffect(() => {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
-      //setPeopleJoin(true);
     });
-  }, [joinsPeople, goRoom]);
+  }, [joinsPeople]);
   return (
     <GameEnteringStyle>
       <div className="diveUp">
@@ -143,13 +131,11 @@ export default function GameEntering() {
             </div>
           );
         })}
-
         <Btn theValue="Enter game" theAction={CheckData} key={1} />
       </div>
       {goRoom && (
         <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
       )}
-
       <PinRenderStyle className="diveUp">
         {innerContent && !thePin && (
           <Btn
