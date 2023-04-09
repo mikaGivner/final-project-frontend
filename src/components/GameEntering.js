@@ -111,10 +111,10 @@ export default function GameEntering() {
   };
   useEffect(() => {
     socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + <br></br> + data);
+      setJoinsPeople(joinsPeople + data);
     });
     // When a participant leaves the room
-    socket.off("participant_left", (name) => {
+    socket.on("participant_left", (name) => {
       // Update the list of participants by removing the name of the participant that has left
       setJoinsPeople(joinsPeople.filter((participant) => participant !== name));
     });
