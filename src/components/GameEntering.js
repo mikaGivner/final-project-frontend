@@ -50,7 +50,8 @@ export default function GameEntering() {
   }, [PinRender]);
   useEffect(() => {
     socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + data);
+      setJoinsPeople(...joinsPeople, data);
+      // setJoinsPeople(joinsPeople + data);
     });
   }, [joinsPeople, setJoinsPeople]);
   const CheckData = async () => {
@@ -102,7 +103,7 @@ export default function GameEntering() {
         }
         setGoRoom(true);
         socket.emit("join_room", newPin);
-        socket.emit("add_participant", joinsPeople + newName, newPin);
+        socket.emit("add_participant", newName, newPin);
       }
     }
   };
