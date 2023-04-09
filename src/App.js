@@ -1,7 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import "./AnimationsAndDefineds.css";
-import { StatesContext } from "./ContextFile";
-import EnteringPage from "./components/EnteringPage";
 import {
   GameEntering,
   GameInfo,
@@ -9,6 +6,13 @@ import {
   OpenPage,
   GamePresentation,
 } from "./ImportsComponents";
+import "./AnimationsAndDefineds.css";
+import { StatesContext } from "./ContextFile";
+import EnteringPage from "./components/EnteringPage";
+import io from "socket.io-client";
+const socket = io.connect("https://songs-gusses.onrender.com", {
+  transports: ["websocket"],
+});
 
 // import io from "socket.io-client";
 
@@ -17,7 +21,8 @@ import {
 // });
 
 function App() {
-  const { setInnerContent, goRoom } = useContext(StatesContext);
+  const { setInnerContent, goRoom, joinsPeople, setJoinsPeople } =
+    useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
   // const [room, setRoom] = useState("");
@@ -56,7 +61,16 @@ function App() {
   //     setJoinsPeople(joinsPeople + data);
   //   });
   // }, [joinsPeople, participantsCount]);
-
+  useEffect(() => {
+    socket.on("participant_added", (data) => {
+      setJoinsPeople(joinsPeople + data);
+    });
+    // When a participant leaves the room
+    socket.on("participant_left", (name) => {
+      // Update the list of participants by removing the name of the participant that has left
+      setJoinsPeople(joinsPeople.filter((participant) => participant !== name));
+    });
+  }, [joinsPeople, setJoinsPeople]);
   return (
     <>
       {startSection ? (
