@@ -24,10 +24,7 @@ export default function GameEntering() {
     pinError,
     setPinError,
   } = useContext(StatesContext);
-  // const [newPin, setNewPin] = useState("");
-  // const [newName, setNewName] = useState("");
-  // const [nameError, setNameError] = useState("");
-  // const [pinError, setPinError] = useState("");
+
   const placeHolders = [
     ["Choose a name", newName, nameError],
     ["Enter your pin", newPin, pinError],

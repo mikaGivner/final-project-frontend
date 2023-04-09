@@ -73,6 +73,7 @@ function App() {
 
             <GameEntering />
           </OpenPage>
+          <EnteringPage />
           {/* {enterToGame ? (
             <EnteringPage />
           ) : (
