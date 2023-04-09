@@ -48,11 +48,11 @@ export default function GameEntering() {
       setPresentPin(true);
     }
   }, [PinRender]);
-  useEffect(() => {
-    socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + "," + data);
-    });
-  }, [joinsPeople, setJoinsPeople]);
+  socket.on("participant_added", (data) => {
+    setJoinsPeople(joinsPeople + data);
+  });
+  // useEffect(() => {
+  // }, [joinsPeople, setJoinsPeople]);
   const CheckData = async () => {
     let greatName = false;
     let greatPin = false;
