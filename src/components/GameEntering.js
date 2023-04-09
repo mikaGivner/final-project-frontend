@@ -112,7 +112,7 @@ export default function GameEntering() {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
     });
-  }, [joinsPeople]);
+  }, [joinsPeople, setJoinsPeople]);
   return (
     <GameEnteringStyle>
       <div className="diveUp">
