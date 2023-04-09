@@ -48,9 +48,9 @@ export default function GameEntering() {
       setPresentPin(true);
     }
   }, [PinRender]);
-  socket.on("participant_added", (data) => {
-    setJoinsPeople(joinsPeople + data);
-  });
+  // socket.on("participant_added", (data) => {
+  //   setJoinsPeople(joinsPeople + data);
+  // });
   // useEffect(() => {
   // }, [joinsPeople, setJoinsPeople]);
   const CheckData = async () => {
@@ -101,9 +101,11 @@ export default function GameEntering() {
           );
         }
         setGoRoom(true);
-        socket.emit("join_room", newPin);
-        socket.emit("add_participant", newName, newPin);
-        socket.emit("write_console", newName);
+        socket.on("participant_added", (data) => {
+          socket.emit("join_room", newPin);
+          socket.emit("add_participant", newName, newPin);
+          setJoinsPeople(joinsPeople + data);
+        });
       }
     }
   };
