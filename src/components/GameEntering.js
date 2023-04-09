@@ -115,7 +115,7 @@ export default function GameEntering() {
       setJoinsPeople(joinsPeople + data);
     });
     socket.off("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + data);
+      setJoinsPeople(joinsPeople + `${data} is living`);
     });
   }, [joinsPeople, setJoinsPeople]);
   return (
