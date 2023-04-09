@@ -48,6 +48,12 @@ export default function GameEntering() {
       setPresentPin(true);
     }
   }, [PinRender]);
+  useEffect(() => {
+    socket.on("participant_added", (data) => {
+      setJoinsPeople(joinsPeople + data);
+      displayMessage(data);
+    });
+  }, [joinsPeople, setJoinsPeople]);
   const CheckData = async () => {
     let greatName = false;
     let greatPin = false;
@@ -110,11 +116,6 @@ export default function GameEntering() {
       setPinError("");
     }
   };
-  useEffect(() => {
-    socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + data);
-    });
-  }, [joinsPeople, setJoinsPeople]);
   return (
     <GameEnteringStyle>
       <div className="diveUp">
