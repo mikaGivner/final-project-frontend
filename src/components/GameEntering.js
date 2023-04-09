@@ -50,7 +50,7 @@ export default function GameEntering() {
   }, [PinRender]);
   useEffect(() => {
     socket.on("participant_added", (data) => {
-      setJoinsPeople(...joinsPeople, data);
+      setJoinsPeople(data);
       // setJoinsPeople(joinsPeople + data);
     });
   }, [joinsPeople, setJoinsPeople]);
