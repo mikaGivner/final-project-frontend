@@ -77,13 +77,6 @@ function App() {
         <LandingPage />
       ) : (
         <>
-          <OpenPage>
-            <GamePresentation className="diveUp">
-              {titleGame && <GameInfo />}
-            </GamePresentation>
-
-            <GameEntering />
-          </OpenPage>
           {goRoom ? (
             <EnteringPage />
           ) : (

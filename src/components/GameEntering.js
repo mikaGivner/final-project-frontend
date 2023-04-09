@@ -25,7 +25,6 @@ export default function GameEntering() {
     setPinError,
     joinsPeople,
     setJoinsPeople,
-    goRoom,
     setGoRoom,
   } = useContext(StatesContext);
 
@@ -112,7 +111,7 @@ export default function GameEntering() {
   };
   useEffect(() => {
     socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + data);
+      setJoinsPeople(joinsPeople + <br></br> + data);
     });
     // When a participant leaves the room
     socket.on("participant_left", (name) => {
@@ -139,9 +138,7 @@ export default function GameEntering() {
         })}
         <Btn theValue="Enter game" theAction={CheckData} key={1} />
       </div>
-      {goRoom && (
-        <div style={{ color: "#000" }}>people who join: {joinsPeople}</div>
-      )}
+
       <PinRenderStyle className="diveUp">
         {innerContent && !thePin && (
           <Btn

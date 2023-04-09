@@ -16,9 +16,7 @@ export default function EnteringPage() {
     <EnteringPageStyle>
       <h1 style={{ color: "#000" }}>Participants for this game</h1>
       <ParticipantsPresentationStyle>
-        {goRoom && (
-          <div style={{ color: "#000" }}>people who join: {joinsPeople}</div>
-        )}
+        {goRoom && <div style={{ color: "#000" }}> {joinsPeople}</div>}
       </ParticipantsPresentationStyle>
     </EnteringPageStyle>
   );
