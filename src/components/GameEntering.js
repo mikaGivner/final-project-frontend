@@ -114,11 +114,6 @@ export default function GameEntering() {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
     });
-    // When a participant leaves the room
-    socket.on("participant_left", (name) => {
-      // Update the list of participants by removing the name of the participant that has left
-      setJoinsPeople(joinsPeople.filter((participant) => participant !== name));
-    });
   }, [joinsPeople, setJoinsPeople]);
   return (
     <GameEnteringStyle>
