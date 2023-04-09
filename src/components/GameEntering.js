@@ -53,6 +53,10 @@ export default function GameEntering() {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
     });
+
+    socket.on("participant_left", (name) => {
+      setJoinsPeople(joinsPeople + name);
+    });
   }, [joinsPeople, setJoinsPeople]);
   const CheckData = async () => {
     let greatName = false;
