@@ -114,8 +114,10 @@ export default function GameEntering() {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
     });
-    socket.off("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + `${data} is living`);
+    // When a participant leaves the room
+    socket.on("participant_left", (name) => {
+      // Update the list of participants by removing the name of the participant that has left
+      setJoinsPeople(joinsPeople.filter((participant) => participant !== name));
     });
   }, [joinsPeople, setJoinsPeople]);
   return (
@@ -138,7 +140,7 @@ export default function GameEntering() {
         <Btn theValue="Enter game" theAction={CheckData} key={1} />
       </div>
       {goRoom && (
-        <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
+        <div style={{ color: "#000" }}>people who join: {joinsPeople}</div>
       )}
       <PinRenderStyle className="diveUp">
         {innerContent && !thePin && (

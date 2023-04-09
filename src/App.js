@@ -63,6 +63,13 @@ function App() {
         <LandingPage />
       ) : (
         <>
+          <OpenPage>
+            <GamePresentation className="diveUp">
+              {titleGame && <GameInfo />}
+            </GamePresentation>
+
+            <GameEntering />
+          </OpenPage>
           {goRoom ? (
             <EnteringPage />
           ) : (
@@ -76,7 +83,6 @@ function App() {
           )}
         </>
       )}
-
       {/* <label>Choose a name:</label>
       <input type="text" value={newName} onChange={UpdateName} />
       <div>
