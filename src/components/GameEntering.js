@@ -23,13 +23,15 @@ export default function GameEntering() {
     setNameError,
     pinError,
     setPinError,
+    joinsPeople,
+    setJoinsPeople,
   } = useContext(StatesContext);
 
   const placeHolders = [
     ["Choose a name", newName, nameError],
     ["Enter your pin", newPin, pinError],
   ];
-  const [joinsPeople, setJoinsPeople] = useState("");
+  //const [joinsPeople, setJoinsPeople] = useState("");
   const [thePin, setThePin] = useState("");
   const [presentPin, setPresentPin] = useState(false);
   const handleGetPin = async () => {
@@ -103,7 +105,7 @@ export default function GameEntering() {
       setNameError("");
     } else {
       setNewPin(e.target.value);
-      setPinError("Please enter a pin");
+      setPinError("");
     }
   };
   useEffect(() => {
