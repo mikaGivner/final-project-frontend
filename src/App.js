@@ -1,4 +1,8 @@
 import { useState, useEffect, useContext } from "react";
+import "./AnimationsAndDefineds.css";
+import { StatesContext } from "./ContextFile";
+import EnteringPage from "./components/EnteringPage";
+
 import {
   GameEntering,
   GameInfo,
@@ -6,13 +10,6 @@ import {
   OpenPage,
   GamePresentation,
 } from "./ImportsComponents";
-import "./AnimationsAndDefineds.css";
-import { StatesContext } from "./ContextFile";
-import EnteringPage from "./components/EnteringPage";
-import io from "socket.io-client";
-const socket = io.connect("https://songs-gusses.onrender.com", {
-  transports: ["websocket"],
-});
 
 // import io from "socket.io-client";
 
@@ -77,6 +74,13 @@ function App() {
         <LandingPage />
       ) : (
         <>
+          <OpenPage>
+            <GamePresentation className="diveUp">
+              {titleGame && <GameInfo />}
+            </GamePresentation>
+
+            <GameEntering />
+          </OpenPage>
           {goRoom ? (
             <EnteringPage />
           ) : (
