@@ -18,8 +18,7 @@ import {
 // });
 
 function App() {
-  const { setInnerContent, goRoom, joinsPeople, setJoinsPeople } =
-    useContext(StatesContext);
+  const { setInnerContent, goRoom } = useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
   // const [room, setRoom] = useState("");
