@@ -52,9 +52,8 @@ export default function GameEntering() {
   useEffect(() => {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
-      return () => {
-        socket.off("participant_added", data);
-      };
+
+      socket.off("participant_added", data);
     });
   }, [joinsPeople, setJoinsPeople]);
   const CheckData = async () => {
