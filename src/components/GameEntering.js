@@ -134,7 +134,6 @@ export default function GameEntering() {
               admin: newName,
             }
           );
-          s;
         }
         setGoRoom(true);
         socket.emit("join_room", newPin);
