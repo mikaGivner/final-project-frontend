@@ -4,7 +4,7 @@ import { StatesContext } from "../ContextFile";
 import "../AnimationsAndDefineds.css";
 import Inputs from "./Inputs";
 import Btn from "./Btn";
-import useResult from "../Hooks/useResult.js";
+//import useResult from "../Hooks/useResult.js";
 import axios from "axios";
 import io from "socket.io-client";
 const socket = io.connect("https://songs-gusses.onrender.com", {
@@ -12,7 +12,7 @@ const socket = io.connect("https://songs-gusses.onrender.com", {
 });
 export default function GameEntering() {
   // const [goRoom, setGoRoom] = useState(false);
-  const { GetPin } = useResult();
+  //const { GetPin } = useResult();
   const {
     newPin,
     setNewPin,
@@ -36,9 +36,35 @@ export default function GameEntering() {
   const [thePin, setThePin] = useState("");
 
   const PinRender = localStorage.getItem("isAdmin");
-  const handleGetPin = async () => {
-    const pin = await GetPin();
-    setThePin(pin);
+
+  const PinFun = async () => {
+    let result = "";
+    let characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (let i = 0; i < 5; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+
+    try {
+      await axios.get(
+        `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
+      );
+      return PinFun();
+    } catch (error) {
+      localStorage.setItem("isAdmin", result);
+      let newGame = {
+        gamePin: result,
+        admin: "",
+        participants: [],
+      };
+      await axios.post(
+        `https://songs-gusses.onrender.com/api/v1/newPlay`,
+        newGame
+      );
+      setThePin(result);
+    }
   };
   useEffect(() => {
     if (PinRender) {
@@ -143,7 +169,7 @@ export default function GameEntering() {
           <Btn
             className="diveUp"
             theValue="Render a code"
-            theAction={handleGetPin}
+            theAction={PinFun}
             key={2}
           />
         ) : (
