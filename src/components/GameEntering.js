@@ -26,7 +26,6 @@ export default function GameEntering() {
     setJoinsPeople,
     goRoom,
     setGoRoom,
-    setTheAdmin,
   } = useContext(StatesContext);
 
   const placeHolders = [
@@ -88,10 +87,7 @@ export default function GameEntering() {
       //   socket.off("participant_added", handleParticipantAdded);
       // };
     });
-    // socket.on("is_admin", (data) => {
-    //   setTheAdmin(`your admin is ${data}`);
-    // });
-  }, [joinsPeople, setJoinsPeople, PinRender, newPin, setTheAdmin]);
+  }, [joinsPeople, setJoinsPeople, PinRender, newPin]);
   const CheckData = async () => {
     let greatName = false;
     let greatPin = false;
@@ -138,7 +134,7 @@ export default function GameEntering() {
               admin: newName,
             }
           );
-          //socket.emit("is_admin", newName, newPin);
+          s;
         }
         setGoRoom(true);
         socket.emit("join_room", newPin);
