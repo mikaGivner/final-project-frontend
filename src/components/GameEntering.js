@@ -91,7 +91,7 @@ export default function GameEntering() {
     socket.on("is_admin", (data) => {
       setTheAdmin(data);
     });
-  }, [joinsPeople, setJoinsPeople, PinRender, newPin]);
+  }, [joinsPeople, setJoinsPeople, PinRender, newPin, setTheAdmin]);
   const CheckData = async () => {
     let greatName = false;
     let greatPin = false;
