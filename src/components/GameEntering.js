@@ -14,7 +14,6 @@ export default function GameEntering() {
   // const [goRoom, setGoRoom] = useState(false);
   const { GetPin } = useResult();
   const {
-    innerContent,
     newPin,
     setNewPin,
     newName,
