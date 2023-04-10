@@ -7,7 +7,7 @@ export function StatesContextProvider(props) {
   const [nameError, setNameError] = useState("");
   const [pinError, setPinError] = useState("");
   const [room, setRoom] = useState("");
-  const [joinsPeople, setJoinsPeople] = useState("");
+  const [joinsPeople, setJoinsPeople] = useState([]);
 
   const [enterToGame, setEnterToGame] = useState(false);
   const [goRoom, setGoRoom] = useState(false);
