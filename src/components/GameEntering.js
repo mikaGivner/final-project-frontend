@@ -89,7 +89,7 @@ export default function GameEntering() {
       // };
     });
     socket.on("is_admin", (data) => {
-      setTheAdmin(data);
+      setTheAdmin(`your admin is ${data}`);
     });
   }, [joinsPeople, setJoinsPeople, PinRender, newPin, setTheAdmin]);
   const CheckData = async () => {

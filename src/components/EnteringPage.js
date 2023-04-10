@@ -20,7 +20,7 @@ export default function EnteringPage() {
           <>
             {" "}
             <div style={{ color: "#000" }}> {joinsPeople}</div>
-            <div>{theAdmin}</div>
+            <div style={{ color: "#000" }}>{theAdmin}</div>
           </>
         )}
       </ParticipantsPresentationStyle>
