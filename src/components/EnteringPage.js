@@ -10,7 +10,7 @@ import "../AnimationsAndDefineds.css";
 
 export default function EnteringPage() {
   //const placeHolders = ["Choose a name", "Enter your pin"];
-  const { joinsPeople, goRoom } = useContext(StatesContext);
+  //const { joinsPeople, goRoom } = useContext(StatesContext);
 
   return (
     <EnteringPageStyle>
