@@ -71,7 +71,10 @@ export default function GameEntering() {
       setThePin(PinRender);
     }
   }, [PinRender]);
-
+  useEffect(() => {
+    console.log(joinsPeople);
+    console.log(typeof joinsPeople);
+  }, [joinsPeople]);
   useEffect(() => {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);

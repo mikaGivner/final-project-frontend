@@ -16,11 +16,11 @@ export default function EnteringPage() {
     <EnteringPageStyle>
       <h1 style={{ color: "#000" }}>Participants for this game</h1>
       <ParticipantsPresentationStyle>
-        {goRoom &&
+        {/* {goRoom &&
           joinsPeople.length !== 0 &&
           joinsPeople.map((user) => {
             return <div>{user.name}</div>;
-          })}
+          })} */}
       </ParticipantsPresentationStyle>
     </EnteringPageStyle>
   );
