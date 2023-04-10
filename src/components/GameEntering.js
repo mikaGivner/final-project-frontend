@@ -35,16 +35,14 @@ export default function GameEntering() {
   //const [joinsPeople, setJoinsPeople] = useState("");
   const [thePin, setThePin] = useState("");
 
+  const PinRender = localStorage.getItem("isAdmin");
   const handleGetPin = async () => {
     const pin = await GetPin();
     setThePin(pin);
-    setPresentPin(true);
   };
-  const PinRender = localStorage.getItem("isAdmin");
   useEffect(() => {
     if (PinRender) {
       setThePin(PinRender);
-      setPresentPin(true);
     }
   }, [PinRender]);
 
