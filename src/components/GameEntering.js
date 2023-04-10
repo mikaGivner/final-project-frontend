@@ -88,9 +88,9 @@ export default function GameEntering() {
       //   socket.off("participant_added", handleParticipantAdded);
       // };
     });
-    socket.on("is_admin", (data) => {
-      setTheAdmin(`your admin is ${data}`);
-    });
+    // socket.on("is_admin", (data) => {
+    //   setTheAdmin(`your admin is ${data}`);
+    // });
   }, [joinsPeople, setJoinsPeople, PinRender, newPin, setTheAdmin]);
   const CheckData = async () => {
     let greatName = false;
@@ -138,7 +138,7 @@ export default function GameEntering() {
               admin: newName,
             }
           );
-          socket.emit("is_admin", newName, newPin);
+          //socket.emit("is_admin", newName, newPin);
         }
         setGoRoom(true);
         socket.emit("join_room", newPin);
