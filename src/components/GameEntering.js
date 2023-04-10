@@ -142,7 +142,7 @@ export default function GameEntering() {
         <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
       )}
       <PinRenderStyle className="diveUp">
-        {innerContent && !thePin && (
+        {!thePin && (
           <Btn
             className="diveUp"
             theValue="Render a code"
