@@ -18,13 +18,14 @@ export default function EnteringPage() {
       <ParticipantsPresentationStyle>
         {goRoom && (
           <div style={{ color: "#000" }}>
-            {joinsPeople.length !== 0 && (
+            {/* {joinsPeople.length !== 0 && (
               <div>
                 {joinsPeople.map((user) => {
                   return <div>{user.name}</div>;
                 })}
               </div>
-            )}
+            )} */}
+            {joinsPeople.length !== 0 && { joinsPeople }}
           </div>
         )}
       </ParticipantsPresentationStyle>
