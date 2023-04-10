@@ -35,7 +35,7 @@ export default function GameEntering() {
   ];
   //const [joinsPeople, setJoinsPeople] = useState("");
   const [thePin, setThePin] = useState("");
-  const [presentPin, setPresentPin] = useState(false);
+
   const handleGetPin = async () => {
     const pin = await GetPin();
     setThePin(pin);
@@ -142,15 +142,16 @@ export default function GameEntering() {
         <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
       )}
       <PinRenderStyle className="diveUp">
-        {!thePin && (
+        {!thePin ? (
           <Btn
             className="diveUp"
             theValue="Render a code"
             theAction={handleGetPin}
             key={2}
           />
+        ) : (
+          <div>Your pin is: {thePin}</div>
         )}
-        {presentPin && <div>Your pin is: {thePin}</div>}
       </PinRenderStyle>
     </GameEnteringStyle>
   );
