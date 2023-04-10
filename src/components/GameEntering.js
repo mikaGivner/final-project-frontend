@@ -77,11 +77,11 @@ export default function GameEntering() {
   }, [joinsPeople]);
   useEffect(() => {
     socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + data);
+      setJoinsPeople([...joinsPeople, data]);
     });
     return () => {
       socket.off("participant_added", (data) => {
-        setJoinsPeople(joinsPeople + data);
+        setJoinsPeople([...joinsPeople, data]);
       });
     };
     // const handleParticipantAdded = (data) => {
