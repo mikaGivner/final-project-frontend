@@ -74,9 +74,11 @@ export default function GameEntering() {
 
   useEffect(() => {
     socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + data);
+      if (PinRender === result) setJoinsPeople(joinsPeople + "Manager:" + data);
+      else setJoinsPeople(joinsPeople + data);
       // return()=>{
       //   socket.off("disconnect",data);
+      //setJoinsPeople(joinsPeople + data);
       // }
       // const handleParticipantAdded = (data) => {
       //   setJoinsPeople([...data]);
