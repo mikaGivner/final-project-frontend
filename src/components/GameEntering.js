@@ -75,19 +75,19 @@ export default function GameEntering() {
   useEffect(() => {
     socket.on("participant_added", (data) => {
       setJoinsPeople(joinsPeople + data);
-      return () => {
-        socket.off("participant_added", (data) => {
-          setJoinsPeople(data);
-        });
-      };
-      // const handleParticipantAdded = (data) => {
-      //   setJoinsPeople([...data]);
-      // };
-      // socket.on("participant_added", handleParticipantAdded);
-      // return () => {
-      //   socket.off("participant_added", handleParticipantAdded);
-      // };
     });
+    return () => {
+      socket.off("participant_added", (data) => {
+        setJoinsPeople(data);
+      });
+    };
+    // const handleParticipantAdded = (data) => {
+    //   setJoinsPeople([...data]);
+    // };
+    // socket.on("participant_added", handleParticipantAdded);
+    // return () => {
+    //   socket.off("participant_added", handleParticipantAdded);
+    // };
   }, [joinsPeople, setJoinsPeople, PinRender, newPin]);
   const CheckData = async () => {
     let greatName = false;
