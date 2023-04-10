@@ -88,7 +88,7 @@ export default function GameEntering() {
       //   socket.off("participant_added", handleParticipantAdded);
       // };
     });
-  }, [joinsPeople, setJoinsPeople]);
+  }, [joinsPeople, setJoinsPeople, PinRender, newPin]);
   const CheckData = async () => {
     let greatName = false;
     let greatPin = false;
