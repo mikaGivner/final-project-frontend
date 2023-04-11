@@ -13,6 +13,7 @@ const socket = io.connect("https://songs-gusses.onrender.com", {
 export default function GameEntering() {
   // const [goRoom, setGoRoom] = useState(false);
   //const { GetPin } = useResult();
+
   const {
     newPin,
     setNewPin,
@@ -77,7 +78,7 @@ export default function GameEntering() {
   }, [joinsPeople]);
   useEffect(() => {
     socket.on("participant_added", (data) => {
-      setJoinsPeople(joinsPeople + data);
+      setJoinsPeople(data);
     });
     return () => {
       socket.off("participant_added", (data) => {
