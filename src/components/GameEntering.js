@@ -84,11 +84,23 @@ export default function GameEntering() {
       setJoinsPeople([...data]);
     });
     return () => {
-      socket.off("participant_added", (data) => {
+      socket.off("participant_added", async (data) => {
         data = data.filter((user) => {
           return user.room === newPin;
         });
         setJoinsPeople([...data]);
+        let participantLeave = await axios.get(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
+        );
+        let deleteParticipant = participantLeave.data.data.participants.filter(
+          (user) => user !== newName
+        );
+        await axios.put(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
+          {
+            participants: deleteParticipant,
+          }
+        );
       });
     };
     // const handleParticipantAdded = (data) => {
@@ -147,7 +159,7 @@ export default function GameEntering() {
           );
         }
         setGoRoom(true);
-        socket.emit("join_room", newPin);
+        socket.emit("join_room", newPin, newName);
         socket.emit("add_participant", newName, newPin);
       }
     }
