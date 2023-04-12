@@ -85,10 +85,6 @@ export default function GameEntering() {
     });
     return () => {
       socket.off("participant_added", async (data) => {
-        data = data.filter((user) => {
-          return user.room === newPin;
-        });
-        setJoinsPeople([...data]);
         let participantLeave = await axios.get(
           `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
         );
@@ -101,6 +97,10 @@ export default function GameEntering() {
             participants: deleteParticipant,
           }
         );
+        data = data.filter((user) => {
+          return user.room === newPin;
+        });
+        setJoinsPeople([...data]);
       });
     };
     // const handleParticipantAdded = (data) => {
