@@ -85,10 +85,10 @@ export default function GameEntering() {
     });
     return () => {
       socket.off("participant_added", async (data) => {
+        localStorage.setItem("user", "");
         data = data.filter((user) => {
           return user.room === newPin;
         });
-        localStorage.setItem("user", "");
         setJoinsPeople([...data]);
       });
     };
