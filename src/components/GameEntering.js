@@ -54,7 +54,7 @@ export default function GameEntering() {
       );
       return PinFun();
     } catch (error) {
-      localStorage.setItem("isAdmin", result);
+      localStorage.setItem("isAdmin", { code: result, name: newName });
       let newGame = {
         gamePin: result,
         admin: "",
