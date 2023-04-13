@@ -84,8 +84,8 @@ export default function GameEntering() {
       setJoinsPeople([...data]);
     });
     return () => {
+      localStorage.setItem("user", "");
       socket.off("participant_added", async (data) => {
-        localStorage.setItem("user", "");
         data = data.filter((user) => {
           return user.room === newPin;
         });
