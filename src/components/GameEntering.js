@@ -88,6 +88,7 @@ export default function GameEntering() {
         data = data.filter((user) => {
           return user.room === newPin;
         });
+        localStorage.setItem("user", "");
         setJoinsPeople([...data]);
       });
     };
