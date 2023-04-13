@@ -10,8 +10,8 @@ import "../AnimationsAndDefineds.css";
 
 export default function EnteringPage() {
   //const placeHolders = ["Choose a name", "Enter your pin"];
-  const { joinsPeople, goRoom } = useContext(StatesContext);
-
+  const { newName, joinsPeople, goRoom } = useContext(StatesContext);
+  const PinRender = localStorage.getItem("isAdmin");
   return (
     <EnteringPageStyle>
       <h1 style={{ color: "#000" }}>Participants for this game</h1>
@@ -24,6 +24,8 @@ export default function EnteringPage() {
             else return <div>{user.name}</div>;
           })}
       </ParticipantsPresentationStyle>
+
+      {PinRender === newName && <button>admin</button>}
     </EnteringPageStyle>
   );
 }
