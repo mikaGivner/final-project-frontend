@@ -100,8 +100,8 @@ export default function GameEntering() {
     setPinError("");
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{2,10}$/;
     //checking a name
-    if (userConnected.length !== 0) {
-      setNameError("Plese check that you didnt connect from other tab");
+    if (userConnected !== "") {
+      setNameError("Please check that you didnt connect from other tab");
     } else {
       if (!newName) setNameError("Please choose a name");
       else if (!regex.test(newName))
