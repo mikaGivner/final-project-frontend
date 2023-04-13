@@ -13,7 +13,6 @@ export default function EnteringPage() {
   const { newName, newPin, joinsPeople, goRoom } = useContext(StatesContext);
   const PinRender = localStorage.getItem("isAdmin");
   const adminName = localStorage.getItem("nameAdmin");
-  const mainAdmin = localStorage.getItem("mainAdmin");
   return (
     <EnteringPageStyle>
       <h1 style={{ color: "#000" }}>Participants for this game</h1>
@@ -21,8 +20,7 @@ export default function EnteringPage() {
         {goRoom &&
           joinsPeople.length !== 0 &&
           joinsPeople.map((user) => {
-            if (user.isAdmin) localStorage.setItem("mainAdmin", user.name);
-            if (user.name === mainAdmin)
+            if (user.isAdmin)
               return <div style={{ fontWeight: "bold" }}>{user.name}</div>;
             else return <div>{user.name}</div>;
           })}
