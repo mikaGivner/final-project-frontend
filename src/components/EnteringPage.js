@@ -19,7 +19,9 @@ export default function EnteringPage() {
         {goRoom &&
           joinsPeople.length !== 0 &&
           joinsPeople.map((user) => {
-            return <div>{user.name}</div>;
+            if (user.isAdmin)
+              return <div style={{ fontWeight: "bold" }}>{user.name}</div>;
+            else return <div>{user.name}</div>;
           })}
       </ParticipantsPresentationStyle>
     </EnteringPageStyle>

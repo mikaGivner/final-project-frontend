@@ -95,6 +95,7 @@ export default function GameEntering() {
   const CheckData = async () => {
     let greatName = false;
     let greatPin = false;
+    let admin = false;
     setNameError("");
     setPinError("");
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{2,10}$/;
@@ -138,10 +139,12 @@ export default function GameEntering() {
               admin: newName,
             }
           );
+          admin = true;
         }
         setGoRoom(true);
         socket.emit("join_room", newPin, newName);
-        socket.emit("add_participant", newName, newPin);
+
+        socket.emit("add_participant", newName, newPin, admin);
       }
     }
   };
