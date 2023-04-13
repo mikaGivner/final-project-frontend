@@ -8,6 +8,7 @@ export function StatesContextProvider(props) {
   const [pinError, setPinError] = useState("");
   const [room, setRoom] = useState("");
   const [joinsPeople, setJoinsPeople] = useState([]);
+  const [adminEnter, setAdminEnter] = useState(false);
 
   const [enterToGame, setEnterToGame] = useState(false);
   const [goRoom, setGoRoom] = useState(false);
@@ -31,6 +32,8 @@ export function StatesContextProvider(props) {
     setEnterToGame,
     goRoom,
     setGoRoom,
+    adminEnter,
+    setAdminEnter,
   };
 
   return (
