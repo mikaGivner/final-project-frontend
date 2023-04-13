@@ -96,6 +96,7 @@ export default function GameEntering() {
     let greatName = false;
     let greatPin = false;
     let admin = false;
+    let yourAdmin = "";
     setNameError("");
     setPinError("");
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{2,10}$/;
@@ -141,13 +142,14 @@ export default function GameEntering() {
             }
           );
           admin = true;
+          yourAdmin = newName;
           localStorage.setItem("nameAdmin", newName);
         }
         setGoRoom(true);
 
         socket.emit("join_room", newPin, newName);
 
-        socket.emit("add_participant", newName, newPin, admin);
+        socket.emit("add_participant", newName, newPin, admin, yourAdmin);
       }
     }
   };
