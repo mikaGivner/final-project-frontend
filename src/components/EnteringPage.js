@@ -21,7 +21,7 @@ export default function EnteringPage() {
         {goRoom &&
           joinsPeople.length !== 0 &&
           joinsPeople.map((user) => {
-            if (user.isAdmin) localStorage.setItem("mainAdmin", user.userAdmin);
+            if (user.isAdmin) localStorage.setItem("mainAdmin", user.name);
             if (user.isAdmin && user.userAdmin === mainAdmin)
               return <div style={{ fontWeight: "bold" }}>{user.name}</div>;
             else return <div>{user.name}</div>;
