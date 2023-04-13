@@ -10,7 +10,7 @@ import "../AnimationsAndDefineds.css";
 
 export default function EnteringPage() {
   //const placeHolders = ["Choose a name", "Enter your pin"];
-  const { newName, joinsPeople, goRoom } = useContext(StatesContext);
+  const { newPin, joinsPeople, goRoom } = useContext(StatesContext);
   const PinRender = localStorage.getItem("isAdmin");
   return (
     <EnteringPageStyle>
@@ -25,7 +25,7 @@ export default function EnteringPage() {
           })}
       </ParticipantsPresentationStyle>
 
-      {PinRender === newName && <button>admin</button>}
+      {PinRender === newPin && <button>admin</button>}
     </EnteringPageStyle>
   );
 }
