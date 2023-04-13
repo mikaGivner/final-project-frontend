@@ -10,8 +10,7 @@ import "../AnimationsAndDefineds.css";
 
 export default function EnteringPage() {
   //const placeHolders = ["Choose a name", "Enter your pin"];
-  const { joinsPeople, goRoom, adminEnter, setAdminEnter } =
-    useContext(StatesContext);
+  const { joinsPeople, goRoom } = useContext(StatesContext);
 
   return (
     <EnteringPageStyle>
@@ -20,12 +19,11 @@ export default function EnteringPage() {
         {goRoom &&
           joinsPeople.length !== 0 &&
           joinsPeople.map((user) => {
-            if (user.isAdmin && !adminEnter) {
-              setAdminEnter(true);
+            if (user.isAdmin)
               return (
                 <div style={{ fontWeight: "bold" }}>Admin: {user.name}</div>
               );
-            } else return <div>{user.name}</div>;
+            else return <div>{user.name}</div>;
           })}
       </ParticipantsPresentationStyle>
     </EnteringPageStyle>
