@@ -20,9 +20,7 @@ export default function EnteringPage() {
           joinsPeople.length !== 0 &&
           joinsPeople.map((user) => {
             if (user.isAdmin)
-              return (
-                <div style={{ fontWeight: "bold" }}>Admin: {user.name}</div>
-              );
+              return <div style={{ fontWeight: "bold" }}>{user.name}</div>;
             else return <div>{user.name}</div>;
           })}
       </ParticipantsPresentationStyle>
