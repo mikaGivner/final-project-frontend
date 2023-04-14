@@ -146,7 +146,7 @@ export default function GameEntering() {
           localStorage.setItem("nameAdmin", newName);
         }
         setGoRoom(true);
-
+        localStorage.setItem("myName", newName);
         socket.emit("join_room", newPin, newName);
 
         socket.emit("add_participant", newName, newPin, admin, yourAdmin);

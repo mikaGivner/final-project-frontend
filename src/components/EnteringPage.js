@@ -11,7 +11,7 @@ export default function EnteringPage() {
   const { newName, newPin, joinsPeople, goRoom } = useContext(StatesContext);
   const PinRender = localStorage.getItem("isAdmin");
   const adminName = localStorage.getItem("nameAdmin");
-
+  const myName = localStorage.getItem("myName");
   const [myGame, setMyGame] = useState(null);
 
   useEffect(() => {
@@ -31,8 +31,16 @@ export default function EnteringPage() {
         {goRoom &&
           joinsPeople.length !== 0 &&
           joinsPeople.map((user) => {
-            if (myGame && myGame.admin === user.name)
+            if (myGame && myGame.admin === user.name && myName === user.name)
+              return (
+                <div style={{ fontWeight: "bold", color: "red" }}>
+                  {user.name}
+                </div>
+              );
+            else if (myGame && myGame.admin === user.name)
               return <div style={{ fontWeight: "bold" }}>{user.name}</div>;
+            else if (myName === user.name)
+              return <div style={{ color: "red" }}>{user.name}</div>;
             else return <div>{user.name}</div>;
           })}
       </ParticipantsPresentationStyle>
