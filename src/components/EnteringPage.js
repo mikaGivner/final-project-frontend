@@ -11,7 +11,7 @@ export default function EnteringPage() {
   const { newName, newPin, joinsPeople, goRoom } = useContext(StatesContext);
   const PinRender = localStorage.getItem("isAdmin");
   const adminName = localStorage.getItem("nameAdmin");
-  //const myName =localStorage.getItem("myName");
+  const myName = localStorage.getItem("myName");
   const [myGame, setMyGame] = useState(null);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export default function EnteringPage() {
       </ParticipantsPresentationStyle>
 
       {PinRender === newPin && adminName === newName && <button>admin</button>}
+      <div>me:{myName}</div>
     </EnteringPageStyle>
   );
 }
