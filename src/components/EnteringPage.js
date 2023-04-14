@@ -22,7 +22,7 @@ export default function EnteringPage() {
       setMyGame(response.data.data);
     }
     fetchGame();
-  }, [newPin]);
+  }, [newPin, joinsPeople, goRoom]);
 
   return (
     <EnteringPageStyle>
