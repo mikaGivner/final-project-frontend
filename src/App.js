@@ -11,14 +11,14 @@ import {
   GamePresentation,
 } from "./ImportsComponents";
 
-// import io from "socket.io-client";
-
-// const socket = io.connect("https://songs-gusses.onrender.com", {
-//   transports: ["websocket"],
-// });
+import io from "socket.io-client";
+const socket = io.connect("https://songs-gusses.onrender.com", {
+  transports: ["websocket"],
+});
 
 function App() {
-  const { setInnerContent, goRoom } = useContext(StatesContext);
+  const { setInnerContent, goRoom, newPin, isGameStarted, setIsGameStarted } =
+    useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
 
@@ -50,13 +50,21 @@ function App() {
       setInnerContent(true);
     }, "3500");
   }, [setInnerContent]);
+  const startGame = () => {
+    socket.emit("game_started", true, newPin);
+  };
+
+  useEffect(() => {
+    socket.on("start", (data) => {
+      if (data) setIsGameStarted(true);
+    });
+  }, [setIsGameStarted]);
   // useEffect(() => {
   //   socket.on("participant_added", (data) => {
   //
   //     setJoinsPeople(joinsPeople + data);
   //   });
   // }, [joinsPeople, participantsCount]);
-
   return (
     <>
       {startSection ? (
@@ -64,7 +72,11 @@ function App() {
       ) : (
         <>
           {goRoom ? (
-            <EnteringPage />
+            !isGameStarted ? (
+              <EnteringPage startGame={startGame} />
+            ) : (
+              <div>hey</div>
+            )
           ) : (
             <OpenPage>
               <GamePresentation className="diveUp">

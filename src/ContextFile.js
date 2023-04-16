@@ -9,6 +9,7 @@ export function StatesContextProvider(props) {
   const [room, setRoom] = useState("");
   const [joinsPeople, setJoinsPeople] = useState([]);
   const [adminEnter, setAdminEnter] = useState(false);
+  const [isGameStarted, setIsGameStarted] = useState(false);
 
   const [enterToGame, setEnterToGame] = useState(false);
   const [goRoom, setGoRoom] = useState(false);
@@ -34,6 +35,8 @@ export function StatesContextProvider(props) {
     setGoRoom,
     adminEnter,
     setAdminEnter,
+    isGameStarted,
+    setIsGameStarted,
   };
 
   return (
