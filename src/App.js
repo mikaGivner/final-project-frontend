@@ -39,11 +39,11 @@ function App() {
     socket.emit("game_started", true, newPin);
   }, [newPin]);
 
-  socket.on("start", (data) => {
-    console.log("data:", data);
-    setIsGameStarted(true);
-  });
   useEffect(() => {
+    socket.on("isStart", (data) => {
+      console.log("data:", data);
+      setIsGameStarted(true);
+    });
     //   //console.log("is game:", isGameStarted);
   }, [isGameStarted, startGame]);
 
