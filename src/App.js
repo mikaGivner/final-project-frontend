@@ -36,24 +36,21 @@ function App() {
 
   const startGame = useCallback(() => {
     console.log("startGame called");
-    socket.emit("game_started", true, newPin);
+    socket.emit("game_started", newPin);
+  }, [newPin]);
 
+  useEffect(() => {
     socket.on("start", (data) => {
       console.log("data:", data);
       setIsGameStarted(true);
     });
-  }, [newPin]);
-
-  useEffect(() => {
     //   //console.log("is game:", isGameStarted);
-  }, [isGameStarted, startGame]);
+    socket.on("start_game_response", (data) => {
+      console.log("start_game_response:", data);
+      setIsGameStarted(true);
+    });
+  }, [setIsGameStarted]);
 
-  // useEffect(() => {
-  //   socket.on("participant_added", (data) => {
-  //
-  //     setJoinsPeople(joinsPeople + data);
-  //   });
-  // }, [joinsPeople, participantsCount]);
   return (
     <>
       {startSection ? (
