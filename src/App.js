@@ -40,18 +40,11 @@ function App() {
   }, [newPin]);
 
   useEffect(() => {
-    socket.on("start_game_response", (data) => {
-      console.log("start_game_response:", data);
+    socket.on("start", () => {
       setIsGameStarted(true);
     });
-  }, [setIsGameStarted]);
-
-  useEffect(() => {
-    socket.on("start", (data) => {
-      console.log("data:", data);
-      socket.emit("start_game_response", true); // emit "start_game_response" event to the server
-    });
-  }, []);
+    //   //console.log("is game:", isGameStarted);
+  }, [socket]);
 
   return (
     <>
