@@ -37,13 +37,13 @@ function App() {
   const startGame = useCallback(() => {
     console.log("startGame called");
     socket.emit("game_started", true, newPin);
-  }, [newPin]);
-
-  useEffect(() => {
     socket.on("isStart", (data) => {
       console.log("data:", data);
       setIsGameStarted(true);
     });
+  }, [newPin]);
+
+  useEffect(() => {
     //   //console.log("is game:", isGameStarted);
   }, [isGameStarted, startGame]);
 
