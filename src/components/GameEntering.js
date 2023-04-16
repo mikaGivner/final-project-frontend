@@ -27,6 +27,7 @@ export default function GameEntering() {
     setJoinsPeople,
     goRoom,
     setGoRoom,
+    isGameStarted,
   } = useContext(StatesContext);
 
   const placeHolders = [
@@ -91,7 +92,7 @@ export default function GameEntering() {
         setJoinsPeople([...data]);
       });
     };
-  }, [joinsPeople, setJoinsPeople, PinRender, newPin]);
+  }, [joinsPeople, setJoinsPeople, PinRender, newPin, isGameStarted]);
   const CheckData = async () => {
     let greatName = false;
     let greatPin = false;

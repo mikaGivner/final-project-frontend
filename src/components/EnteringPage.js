@@ -8,7 +8,8 @@ import "../AnimationsAndDefineds.css";
 import axios from "axios";
 
 export default function EnteringPage({ startGame }) {
-  const { newName, newPin, joinsPeople, goRoom } = useContext(StatesContext);
+  const { newName, newPin, joinsPeople, goRoom, isGameStarted } =
+    useContext(StatesContext);
   const PinRender = localStorage.getItem("isAdmin");
   const adminName = localStorage.getItem("nameAdmin");
   const myName = localStorage.getItem("myName");
@@ -22,7 +23,7 @@ export default function EnteringPage({ startGame }) {
       setMyGame(response.data.data);
     }
     fetchGame();
-  }, [newPin, joinsPeople, goRoom]);
+  }, [newPin, joinsPeople, goRoom, isGameStarted]);
 
   return (
     <EnteringPageStyle>

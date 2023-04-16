@@ -59,7 +59,7 @@ function App() {
     socket.on("start", (data) => {
       if (data) setIsGameStarted(true);
     });
-  }, [setIsGameStarted]);
+  }, [setIsGameStarted, isGameStarted]);
   // useEffect(() => {
   //   socket.on("participant_added", (data) => {
   //
