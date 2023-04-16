@@ -58,10 +58,11 @@ function App() {
 
   useEffect(() => {
     socket.on("start", (data) => {
+      console.log("data:", data);
       if (data) setIsGameStarted(true);
     });
     //console.log("is game:", isGameStarted);
-  }, [setIsGameStarted]);
+  }, [isGameStarted]);
   useEffect(() => {
     console.log("is game:", isGameStarted);
   }, [isGameStarted]);

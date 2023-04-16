@@ -16,6 +16,7 @@ export default function EnteringPage({ startGame }) {
   const [myGame, setMyGame] = useState(null);
 
   useEffect(() => {
+    console.log("is Game in Entering page:", isGameStarted);
     async function fetchGame() {
       const response = await axios.get(
         `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
