@@ -52,7 +52,7 @@ function App() {
   }, [setInnerContent]);
   const startGame = () => {
     console.log("startGame called");
-    io.to(newPin).emit("game_started", true, newPin);
+    socket.emit("game_started", true, newPin);
   };
 
   useEffect(() => {
