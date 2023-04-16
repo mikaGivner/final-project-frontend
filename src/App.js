@@ -62,7 +62,7 @@ function App() {
       if (data) setIsGameStarted(true);
     });
     //   //console.log("is game:", isGameStarted);
-  }, [setIsGameStarted]);
+  }, [setIsGameStarted, startGame]);
   useEffect(() => {
     console.log("is game:", isGameStarted);
   }, [isGameStarted]);
