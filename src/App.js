@@ -51,7 +51,7 @@ function App() {
     }, "3500");
   }, [setInnerContent]);
   const startGame = () => {
-    socket.emit("game_started", true, newPin);
+    io.to(newPin).emit("game_started", true, newPin);
   };
 
   useEffect(() => {
