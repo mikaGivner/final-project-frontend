@@ -40,8 +40,8 @@ function App() {
   }, [newPin]);
 
   useEffect(() => {
-    socket.on("start", () => {
-      setIsGameStarted(true);
+    socket.on("game_started", (data) => {
+      setIsGameStarted(data);
     });
     //   //console.log("is game:", isGameStarted);
   }, [socket]);
