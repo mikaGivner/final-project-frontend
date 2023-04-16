@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import "./AnimationsAndDefineds.css";
 import { StatesContext } from "./ContextFile";
 import EnteringPage from "./components/EnteringPage";
@@ -50,15 +50,17 @@ function App() {
       setInnerContent(true);
     }, "3500");
   }, [setInnerContent]);
-  const startGame = () => {
+
+  const startGame = useCallback(() => {
     console.log("startGame called");
     socket.emit("game_started", true, newPin);
-  };
+  }, [newPin]);
 
   useEffect(() => {
     socket.on("start", (data) => {
       if (data) setIsGameStarted(true);
     });
+    console.log("is game:", isGameStarted);
   }, [setIsGameStarted, isGameStarted]);
   // useEffect(() => {
   //   socket.on("participant_added", (data) => {
