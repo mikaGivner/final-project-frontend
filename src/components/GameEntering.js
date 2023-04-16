@@ -84,14 +84,14 @@ export default function GameEntering() {
       });
       setJoinsPeople([...data]);
     });
-    // return () => {
-    //   socket.off("participant_added", async (data) => {
-    //     data = data.filter((user) => {
-    //       return user.room === newPin;
-    //     });
-    //     setJoinsPeople([...data]);
-    //   });
-    // };
+    return () => {
+      socket.off("participant_added", async (data) => {
+        data = data.filter((user) => {
+          return user.room === newPin;
+        });
+        setJoinsPeople([...data]);
+      });
+    };
   }, [joinsPeople, setJoinsPeople, PinRender, newPin, isGameStarted]);
   const CheckData = async () => {
     let greatName = false;
