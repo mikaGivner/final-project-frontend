@@ -16,9 +16,10 @@ export default function Login() {
         <input type="password" placeholder="Password" id="password" />
 
         <button>Log In</button>
+        <div className="bottomMenu"></div>
         <div className="social">Sign up teacher</div>
         <input className="remember" type="checkbox" />
-        <label>Remember me</label>
+        <label className="rememberValue">Remember me</label>
       </form>
     </div>
   );

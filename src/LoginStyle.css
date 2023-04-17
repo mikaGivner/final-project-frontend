@@ -78,9 +78,12 @@ input {
   font-weight: 300;
 }
 .remember {
-  display: flex;
-  height: 5px;
-  width: 5px;
+  display: inline;
+  height: 15px;
+  width: 15px;
+}
+.rememberValue {
+  display: inline;
 }
 ::placeholder {
   color: #e5e5e5;
@@ -96,11 +99,13 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-.social {
+.bottomMenu {
   margin-top: 30px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-around;
+}
+.social {
   font-size: 1rem;
   text-decoration: underline;
   cursor: pointer;
