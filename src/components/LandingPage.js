@@ -2,7 +2,7 @@ import { LandingPageStyle } from "../style/Index";
 import "../AnimationsAndDefineds.css";
 export default function LandingPage() {
   let welcome = "Welcome";
-  let SongsGuesser = "Songs-Guesser";
+  let SongsGuesser = "Student_attendance";
   const titleAnimation = (word, i) => {
     let theVar = `--${i}`;
     return word.split("").map((letter, i) => {
