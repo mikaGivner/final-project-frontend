@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import "../LoginStyle.css";
 import { StatesContext } from "../ContextFile";
 export default function Login({ CheckName, ValueChanged }) {
