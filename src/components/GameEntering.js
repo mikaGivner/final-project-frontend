@@ -53,6 +53,7 @@ export default function GameEntering() {
       await axios.get(
         `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
       );
+
       return PinFun();
     } catch (error) {
       localStorage.setItem("isAdmin", result);
@@ -65,6 +66,7 @@ export default function GameEntering() {
         `https://songs-gusses.onrender.com/api/v1/newPlay`,
         newGame
       );
+
       setThePin(result);
     }
   };
@@ -116,6 +118,7 @@ export default function GameEntering() {
         await axios.get(
           `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
         );
+
         greatPin = true;
       } catch {
         setPinError("This pin is not exist");
@@ -125,16 +128,18 @@ export default function GameEntering() {
       let game = await axios.get(
         `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
       );
+
       if (game.data.data.participants.includes(newName)) {
         setNameError("This name exists in the game you are trying to access");
       } else {
-        const updatedPartisipants = [...game.data.data.participants, newName];
+        const updatedParticipants = [...game.data.data.participants, newName];
         await axios.put(
           `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
           {
-            participants: updatedPartisipants,
+            participants: updatedParticipants,
           }
         );
+
         if (newPin === PinRender) {
           await axios.put(
             `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
@@ -142,6 +147,7 @@ export default function GameEntering() {
               admin: newName,
             }
           );
+
           admin = true;
           yourAdmin = newName;
           localStorage.setItem("nameAdmin", newName);

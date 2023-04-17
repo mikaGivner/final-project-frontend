@@ -21,6 +21,7 @@ export default function EnteringPage({ startGame }) {
       const response = await axios.get(
         `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
       );
+
       setMyGame(response.data.data);
     }
     fetchGame();

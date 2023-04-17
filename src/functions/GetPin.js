@@ -9,9 +9,11 @@ export default async function GetPin() {
   }
 
   try {
-    await axios.get(
-      `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
-    );
+    // await axios.get(
+    //   `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
+    // );
+    await axios.get(`http://localhost:5000/api/v1/newPlay/${result}`);
+
     return GetPin();
   } catch (error) {
     localStorage.setItem("isAdmin", result);
@@ -20,10 +22,12 @@ export default async function GetPin() {
       admin: "",
       participants: [],
     };
-    await axios.post(
-      `https://songs-gusses.onrender.com/api/v1/newPlay`,
-      newGame
-    );
+    // await axios.post(
+    //   `https://songs-gusses.onrender.com/api/v1/newPlay`,
+    //   newGame
+    // );
+    await axios.post(`http://localhost:5000/api/v1/newPlay`, newGame);
+
     return result;
   }
 }

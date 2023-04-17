@@ -37,14 +37,28 @@ function App() {
   const startGame = useCallback(() => {
     console.log("startGame called");
     socket.emit("game_started", newPin);
-  }, [newPin]);
+  }, [newPin, socket]);
 
   useEffect(() => {
     socket.on("game_started", (data) => {
-      setIsGameStarted(data);
+      console.log("game_started event received with data:", data.message);
+      setIsGameStarted(true);
     });
-    //   //console.log("is game:", isGameStarted);
+    return () => {
+      socket.off("game_started");
+    };
   }, [socket]);
+
+  // useEffect(() => {
+  //   socket.on("game_started", (data) => {
+  //     console.log(
+  //       "game_started event received with data:",
+  //       data.message,
+  //     );
+  //     setIsGameStarted(true);
+  //   });
+  //   //   //console.log("is game:", isGameStarted);
+  // }, [isGameStarted, socket]);
 
   return (
     <>
