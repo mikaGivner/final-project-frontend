@@ -141,10 +141,22 @@ function App() {
             ToRemember={ToRemember}
           />
         ) : (
-          <div>hey</div>
+          <OpenPage>
+            <GamePresentation className="diveUp">
+              {titleGame && <GameInfo />}
+            </GamePresentation>
+
+            <GameEntering />
+          </OpenPage>
         )
       ) : (
-        <div>ok</div>
+        <OpenPage>
+          <GamePresentation className="diveUp">
+            {titleGame && <GameInfo />}
+          </GamePresentation>
+
+          <GameEntering />
+        </OpenPage>
       )}
 
       {/* {goRoom ? (
