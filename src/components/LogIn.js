@@ -29,7 +29,6 @@ export default function Login({ CheckName, ValueChanged }) {
         ) : (
           <label for="password">Password</label>
         )}
-        <label for="password">Password</label>
         <input
           type="password"
           onChange={ValueChanged}
