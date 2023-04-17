@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, useCallback } from "react";
 import "./AnimationsAndDefineds.css";
 import { StatesContext } from "./ContextFile";
 import EnteringPage from "./components/EnteringPage";
-
+import Login from "./components/LogIn";
 import {
   GameEntering,
   GameInfo,
@@ -62,11 +62,9 @@ function App() {
 
   return (
     <>
-      {startSection ? (
-        <LandingPage />
-      ) : (
-        <>
-          {goRoom ? (
+      {startSection ? <LandingPage /> : <Login />}
+
+      {/* {goRoom ? (
             !isGameStarted ? (
               <EnteringPage startGame={startGame} />
             ) : (
@@ -82,7 +80,7 @@ function App() {
             </OpenPage>
           )}
         </>
-      )}
+      )} */}
     </>
   );
 }
