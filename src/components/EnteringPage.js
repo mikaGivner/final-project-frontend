@@ -16,6 +16,16 @@ export default function EnteringPage({ startGame }) {
   const [myGame, setMyGame] = useState(null);
 
   useEffect(() => {
+    setTimeout(() => {
+      let list = "";
+      joinsPeople.map((user, i) => {
+        return (list += `${i}.${user.name} `);
+      });
+      list += "\r\n";
+      list = "data:application/csv," + encodeURIComponent(CsvString);
+    }, "5000");
+  }, []);
+  useEffect(() => {
     console.log("is Game in Entering page:", isGameStarted);
     async function fetchGame() {
       const response = await axios.get(
