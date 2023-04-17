@@ -81,10 +81,10 @@ input {
   display: inline;
   height: 15px;
   width: 15px;
+  margin-top: 0;
 }
 .rememberValue {
   margin-left: 0.5rem;
-  padding-top: 0;
   margin-top: 0;
   display: inline;
 }
