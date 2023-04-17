@@ -89,7 +89,7 @@ function App() {
     if (!userName) setCorrectName("Please enter name");
     else {
       try {
-        let currentlyName = await axios.get(
+        await axios.get(
           `https://songs-gusses.onrender.com/api/v1/newUser/${userName}`
         );
         goodName = true;
@@ -105,6 +105,9 @@ function App() {
     }
 
     if (goodName && goodPsw) {
+      let currentlyName = await axios.get(
+        `https://songs-gusses.onrender.com/api/v1/newUser/${userName}`
+      );
       console.log("the user:", currentlyName.data.data.password);
       if (currentlyName.data.data.password !== pSW)
         setCorrectPsw("Wrong password");
