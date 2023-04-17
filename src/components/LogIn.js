@@ -16,14 +16,7 @@ export default function Login() {
         <input type="password" placeholder="Password" id="password" />
 
         <button>Log In</button>
-        <div className="social">
-          <div className="go">
-            <i className="fab fa-google"></i> Google
-          </div>
-          <div className="fb">
-            <i className="fab fa-facebook"></i> Facebook
-          </div>
-        </div>
+        <div className="social">Sign up teacher</div>
       </form>
     </div>
   );
