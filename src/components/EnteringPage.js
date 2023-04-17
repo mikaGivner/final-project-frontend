@@ -14,19 +14,12 @@ export default function EnteringPage({ startGame }) {
   const adminName = localStorage.getItem("nameAdmin");
   const myName = localStorage.getItem("myName");
   const [myGame, setMyGame] = useState(null);
-  const [isPDF, setIsPDF] = useState(false);
+  const [csvData, setCsvData] = useState([]);
 
-  let list = "";
   useEffect(() => {
-    setTimeout(() => {
-      joinsPeople.map((user, i) => {
-        return (list += `${i}.${user.name} `);
-      });
-      list += "\r\n";
-      list = "data:application/csv," + encodeURIComponent(list);
-      setIsPDF(true);
-    }, "5000");
-  }, []);
+    setCsvData(joinsPeople.map((user, i) => [i, user.name]));
+  }, [joinsPeople]);
+
   useEffect(() => {
     console.log("is Game in Entering page:", isGameStarted);
     async function fetchGame() {
@@ -38,6 +31,22 @@ export default function EnteringPage({ startGame }) {
     }
     fetchGame();
   }, [newPin, joinsPeople, goRoom, isGameStarted]);
+
+  const handleDownloadCsv = () => {
+    const csvRows = [];
+    csvRows.push(["#", "Name"]);
+    csvData.forEach((row) => {
+      csvRows.push(row);
+    });
+
+    const csvString = csvRows.map((row) => row.join(",")).join("\n");
+    const blob = new Blob([csvString], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = "participants.csv";
+    link.href = url;
+    link.click();
+  };
 
   return (
     <EnteringPageStyle>
@@ -56,10 +65,8 @@ export default function EnteringPage({ startGame }) {
         <button onClick={startGame}>admin</button>
       )}
       <div>me:{myName}</div>
-      {isPDF && (
-        <a href={list} download="somedata.csv">
-          click here
-        </a>
+      {csvData.length > 0 && (
+        <button onClick={handleDownloadCsv}>Download CSV</button>
       )}
     </EnteringPageStyle>
   );
