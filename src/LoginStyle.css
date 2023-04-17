@@ -104,7 +104,8 @@ button {
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 330px;
+  border: 1rem red solid;
   justify-content: space-around;
 }
 .social {
