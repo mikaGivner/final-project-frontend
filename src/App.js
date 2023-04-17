@@ -33,7 +33,9 @@ function App() {
   } = useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
-
+  const [rememberUser, setRememberUser] = useState(false);
+  const [enterWithUser, setEnterWithUser] = useState(false);
+  const userEnter = localStorage.getItem("userToRemember");
   useEffect(() => {
     setTimeout(() => {
       setStartSection(false);
@@ -112,17 +114,36 @@ function App() {
       if (currentlyName.data.data.password !== pSW)
         setCorrectPsw("Wrong password");
       else {
+        if (currentlyName.data.data.isTeacher)
+          localStorage.setItem("isTeacher", true);
+
+        if (rememberUser) localStorage.setItem("userToRemember", userName);
+        setEnterWithUser(true);
+
         //if its a teacher- to set localhost. the to change a state to come to the entering page
       }
     }
   };
-
+  const ToRemember = (e) => {
+    if (e.target.checked) setRememberUser(true);
+    else setRememberUser(false);
+  };
   return (
     <>
       {startSection ? (
         <LandingPage />
+      ) : !userEnter ? (
+        !enterWithUser ? (
+          <Login
+            ValueChanged={ValueChanged}
+            CheckName={CheckName}
+            ToRemember={ToRemember}
+          />
+        ) : (
+          <div>hey</div>
+        )
       ) : (
-        <Login ValueChanged={ValueChanged} CheckName={CheckName} />
+        <div>ok</div>
       )}
 
       {/* {goRoom ? (

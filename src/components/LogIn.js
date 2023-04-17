@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "../LoginStyle.css";
 import { StatesContext } from "../ContextFile";
-export default function Login({ CheckName, ValueChanged }) {
+export default function Login({ CheckName, ValueChanged, ToRemember }) {
   const { userName, pSW, correctPsw, correctName } = useContext(StatesContext);
   return (
     <div className="theBody">
@@ -44,7 +44,9 @@ export default function Login({ CheckName, ValueChanged }) {
           <div className="social">Sign up teacher</div>
           <div>
             <input className="remember" type="checkbox" />
-            <label className="rememberValue">Remember me</label>
+            <label className="rememberValue" onClick={ToRemember}>
+              Remember me
+            </label>
           </div>
         </div>
       </div>
