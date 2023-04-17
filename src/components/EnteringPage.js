@@ -14,6 +14,7 @@ export default function EnteringPage({ startGame }) {
   const adminName = localStorage.getItem("nameAdmin");
   const myName = localStorage.getItem("myName");
   const [myGame, setMyGame] = useState(null);
+  const [isPDF, setIsPDF] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,6 +24,7 @@ export default function EnteringPage({ startGame }) {
       });
       list += "\r\n";
       list = "data:application/csv," + encodeURIComponent(CsvString);
+      setIsPDF(true);
     }, "5000");
   }, []);
   useEffect(() => {
@@ -54,6 +56,11 @@ export default function EnteringPage({ startGame }) {
         <button onClick={startGame}>admin</button>
       )}
       <div>me:{myName}</div>
+      {isPDF && (
+        <a href={list} download="somedata.csv">
+          click here
+        </a>
+      )}
     </EnteringPageStyle>
   );
 }
