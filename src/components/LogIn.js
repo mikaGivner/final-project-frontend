@@ -43,10 +43,8 @@ export default function Login({ CheckName, ValueChanged, ToRemember }) {
         <div className="bottomMenu">
           <div className="social">Sign up teacher</div>
           <div>
-            <input className="remember" type="checkbox" />
-            <label className="rememberValue" onClick={ToRemember}>
-              Remember me
-            </label>
+            <input className="remember" type="checkbox" onClick={ToRemember} />
+            <label className="rememberValue">Remember me</label>
           </div>
         </div>
       </div>
