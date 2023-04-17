@@ -119,3 +119,9 @@ p {
     transform: scale(1);
   }
 }
+
+@media (max-width: 700px) {
+  .gameName {
+    font-size: 1rem;
+  }
+}
