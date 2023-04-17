@@ -123,5 +123,9 @@ p {
 @media (max-width: 700px) {
   .gameName {
     font-size: 1rem;
+    margin-left: 2rem;
+  }
+  .open {
+    font-size: 2rem;
   }
 }
