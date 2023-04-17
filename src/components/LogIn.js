@@ -37,7 +37,9 @@ export default function Login({ CheckName, ValueChanged }) {
           id="password"
         />
 
-        <button onClick={CheckName}>Log In</button>
+        <button className="btnLog" onClick={CheckName}>
+          Log In
+        </button>
         <div className="bottomMenu">
           <div className="social">Sign up teacher</div>
           <div>
