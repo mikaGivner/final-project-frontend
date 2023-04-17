@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext, useCallback } from "react";
+import axios from "axios";
 import "./AnimationsAndDefineds.css";
 import { StatesContext } from "./ContextFile";
 import EnteringPage from "./components/EnteringPage";
@@ -17,8 +18,19 @@ const socket = io.connect("https://songs-gusses.onrender.com", {
 });
 
 function App() {
-  const { setInnerContent, goRoom, newPin, isGameStarted, setIsGameStarted } =
-    useContext(StatesContext);
+  const {
+    setInnerContent,
+    goRoom,
+    newPin,
+    isGameStarted,
+    setIsGameStarted,
+    setCorrectPsw,
+    setCorrectName,
+    userName,
+    setUserName,
+    pSW,
+    setPSW,
+  } = useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
 
@@ -59,10 +71,56 @@ function App() {
   //   });
   //   //   //console.log("is game:", isGameStarted);
   // }, [isGameStarted, socket]);
+  const ValueChanged = (e) => {
+    if (e.target.type === "text") {
+      setUserName(e.target.value);
+      setCorrectName("");
+    } else {
+      setPSW(e.target.value);
+      setCorrectPsw("");
+    }
+  };
+  const CheckName = async () => {
+    setCorrectName("");
+    setCorrectPsw("");
+    let goodName = false;
+    let goodPsw = false;
+    //check userName
+    if (!userName) setCorrectName("Please enter name");
+    else {
+      try {
+        let currentlyName = await axios.get(
+          `https://songs-gusses.onrender.com/api/v1/newUser/${userName}`
+        );
+        goodName = true;
+      } catch {
+        setCorrectName("The user is not found");
+      }
+    }
+
+    //check psw
+    if (!pSW) setCorrectPsw("Please enter password");
+    else {
+      goodPsw = true;
+    }
+
+    if (goodName && goodPsw) {
+      console.log("the user:", currentlyName.data.data.password);
+      if (currentlyName.data.data.password !== pSW)
+        setCorrectPsw("Wrong password");
+      else {
+        //if its a teacher- to set localhost. the to change a state to come to the entering page
+      }
+    }
+  };
 
   return (
     <>
-      {startSection ? <LandingPage /> : <Login />}
+      {startSection ? (
+        <LandingPage />
+      ) : (
+        <Login ValueChanged={ValueChanged} CheckName={CheckName} />
+      )}
 
       {/* {goRoom ? (
             !isGameStarted ? (

@@ -13,6 +13,10 @@ export function StatesContextProvider(props) {
 
   const [enterToGame, setEnterToGame] = useState(false);
   const [goRoom, setGoRoom] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [pSW, setPSW] = useState("");
+  const [correctName, setCorrectName] = useState("");
+  const [correctPsw, setCorrectPsw] = useState("");
 
   const contextValue = {
     innerContent,
@@ -37,6 +41,14 @@ export function StatesContextProvider(props) {
     setAdminEnter,
     isGameStarted,
     setIsGameStarted,
+    userName,
+    setUserName,
+    pSW,
+    setPSW,
+    correctName,
+    setCorrectName,
+    correctPsw,
+    setCorrectPsw,
   };
 
   return (
