@@ -16,14 +16,14 @@ export default function EnteringPage({ startGame }) {
   const [myGame, setMyGame] = useState(null);
   const [isPDF, setIsPDF] = useState(false);
 
+  let list = "";
   useEffect(() => {
     setTimeout(() => {
-      let list = "";
       joinsPeople.map((user, i) => {
         return (list += `${i}.${user.name} `);
       });
       list += "\r\n";
-      list = "data:application/csv," + encodeURIComponent(CsvString);
+      list = "data:application/csv," + encodeURIComponent(list);
       setIsPDF(true);
     }, "5000");
   }, []);
