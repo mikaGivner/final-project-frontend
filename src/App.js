@@ -125,6 +125,7 @@ function App() {
     }
   };
   const ToRemember = (e) => {
+    console.log("is checked:", e.target);
     if (e.target.checked) setRememberUser(true);
     else setRememberUser(false);
   };
