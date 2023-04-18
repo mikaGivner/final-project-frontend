@@ -34,11 +34,13 @@ export default function GameEntering({ PinFun }) {
     setNewClass,
     newLesson,
     setNewLesson,
+    fillInput,
+    setFillInput,
+    thePin,
+    setThePin,
+    codePresent,
+    setCodePresent,
   } = useContext(StatesContext);
-
-  const [thePin, setThePin] = useState("");
-  const [fillInput, setFillInput] = useState("");
-  const [codePresent, setCodePresent] = useState("");
 
   const PinRender = localStorage.getItem("isAdmin");
   const isUser = localStorage.getItem("userToRemember");
