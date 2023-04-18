@@ -45,6 +45,7 @@ function App() {
   const [rememberUser, setRememberUser] = useState(false);
   const [enterWithUser, setEnterWithUser] = useState(false);
   const userEnter = localStorage.getItem("userToRemember");
+  let result = "";
   useEffect(() => {
     setTimeout(() => {
       setStartSection(false);
@@ -155,7 +156,7 @@ function App() {
     if (newClass === "" || newLesson === "") {
       setFillInput("Please fill all");
     } else {
-      let result = "";
+      result = "";
       let characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       for (let i = 0; i < 5; i++) {
