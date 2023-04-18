@@ -36,6 +36,7 @@ export default function GameEntering() {
 
   const PinRender = localStorage.getItem("isAdmin");
   const isUser = localStorage.getItem("userToRemember");
+  let teacher = localStorage.getItem("isTeacher");
 
   const PinFun = async () => {
     let result = "";
@@ -160,6 +161,7 @@ export default function GameEntering() {
     <GameEnteringStyle>
       <div className="diveUp">
         <div className="inputPresent">
+          <label>Enter your code</label>
           {pinError}
           <Inputs
             openLine="Enter class code"
@@ -170,21 +172,20 @@ export default function GameEntering() {
 
         <Btn theValue="Enter to class" theAction={CheckData} key={1} />
       </div>
-      {goRoom && (
-        <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
+      {teacher && (
+        <PinRenderStyle className="diveUp">
+          {!thePin ? (
+            <Btn
+              className="diveUp"
+              theValue="Render a code"
+              theAction={PinFun}
+              key={2}
+            />
+          ) : (
+            <div>Your pin is: {thePin}</div>
+          )}
+        </PinRenderStyle>
       )}
-      <PinRenderStyle className="diveUp">
-        {!thePin ? (
-          <Btn
-            className="diveUp"
-            theValue="Render a code"
-            theAction={PinFun}
-            key={2}
-          />
-        ) : (
-          <div>Your pin is: {thePin}</div>
-        )}
-      </PinRenderStyle>
     </GameEnteringStyle>
   );
 }
