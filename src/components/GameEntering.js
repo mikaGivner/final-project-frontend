@@ -69,7 +69,7 @@ export default function GameEntering() {
     }
   };
   useEffect(() => {
-    if ((userName = "")) setUserName(isUser);
+    if (userName === "") setUserName(isUser);
   }, []);
   useEffect(() => {
     if (PinRender) {
