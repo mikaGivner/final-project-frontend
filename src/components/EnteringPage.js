@@ -47,7 +47,7 @@ export default function EnteringPage({ startGame }) {
     link.href = url;
     link.click();
   };
-
+  let teacher = localStorage.getItem("isTeacher");
   return (
     <EnteringPageStyle>
       <h1 style={{ color: "#000" }}>Participants for this game</h1>
@@ -61,11 +61,8 @@ export default function EnteringPage({ startGame }) {
           })}
       </ParticipantsPresentationStyle>
 
-      {PinRender === newPin && adminName === userName && (
-        <button onClick={startGame}>admin</button>
-      )}
       <div>me:{myName}</div>
-      {csvData.length > 0 && (
+      {csvData.length > 0 && teacher && (
         <button onClick={handleDownloadCsv}>Download CSV</button>
       )}
     </EnteringPageStyle>
