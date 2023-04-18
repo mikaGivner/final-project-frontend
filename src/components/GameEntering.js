@@ -37,40 +37,49 @@ export default function GameEntering() {
   } = useContext(StatesContext);
 
   const [thePin, setThePin] = useState("");
+  const [fillInput, setFillInput] = useState("");
+  const [codePresent, setCodePresent] = useState("");
 
   const PinRender = localStorage.getItem("isAdmin");
   const isUser = localStorage.getItem("userToRemember");
   let teacher = localStorage.getItem("isTeacher");
 
   const PinFun = async () => {
-    let result = "";
-    let characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (let i = 0; i < 5; i++) {
-      result += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      );
-    }
+    setFillInput("");
+    if (newClass === "" || newLesson === "") {
+      setFillInput("Please fill all");
+    } else {
+      let result = "";
+      let characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (let i = 0; i < 5; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * characters.length)
+        );
+      }
+      try {
+        await axios.get(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
+        );
 
-    try {
-      await axios.get(
-        `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
-      );
+        return PinFun();
+      } catch (error) {
+        localStorage.setItem("isAdmin", result);
+        let newGame = {
+          gamePin: result,
+          admin: "",
+          participants: [],
+        };
+        await axios.post(
+          `https://songs-gusses.onrender.com/api/v1/newPlay`,
+          newGame
+        );
 
-      return PinFun();
-    } catch (error) {
-      localStorage.setItem("isAdmin", result);
-      let newGame = {
-        gamePin: result,
-        admin: "",
-        participants: [],
-      };
-      await axios.post(
-        `https://songs-gusses.onrender.com/api/v1/newPlay`,
-        newGame
-      );
-
-      setThePin(result);
+        setThePin(result);
+        setCodePresent(
+          `Your code for ${newLesson} lesson to ${newClass} is: ${result}`
+        );
+      }
     }
   };
   useEffect(() => {
@@ -161,6 +170,7 @@ export default function GameEntering() {
     setPinError("");
   };
   const ClassChanged = (e) => {
+    setCodePresent("");
     console.log(e.target);
     if (e.target.placeholder === "Layer and class number")
       setNewClass(e.target.value);
@@ -180,7 +190,7 @@ export default function GameEntering() {
             key={0}
           />
         </div>
-
+        {fillInput}
         <Btn theValue="Enter to class" theAction={CheckData} key={1} />
       </div>
       {teacher && (
@@ -209,7 +219,8 @@ export default function GameEntering() {
           />
 
           <div>
-            Your code for {newLesson} lesson to {newClass} is: {thePin}
+            {/* Your code for {newLesson} lesson to {newClass} is: {thePin} */}
+            {codePresent}
           </div>
         </PinRenderStyle>
       )}
