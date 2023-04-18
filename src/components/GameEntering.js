@@ -30,11 +30,7 @@ export default function GameEntering() {
     isGameStarted,
   } = useContext(StatesContext);
 
-  const placeHolders = [
-    ["Choose a name", newName, nameError],
-    ["Enter your pin", newPin, pinError],
-  ];
-  //const [joinsPeople, setJoinsPeople] = useState("");
+  
   const [thePin, setThePin] = useState("");
 
   const PinRender = localStorage.getItem("isAdmin");
@@ -96,23 +92,13 @@ export default function GameEntering() {
     };
   }, [joinsPeople, setJoinsPeople, PinRender, newPin, isGameStarted]);
   const CheckData = async () => {
-    let greatName = false;
     let greatPin = false;
     let admin = false;
     let yourAdmin = "";
-    setNameError("");
     setPinError("");
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{2,10}$/;
-    //checking a name
-
-    if (!newName) setNameError("Please choose a name");
-    else if (!regex.test(newName))
-      setNameError(
-        "Please check if the name: contain a number, upper and lower case and in length between 2-10 characters "
-      );
-    else greatName = true;
+      
     //checking a pin
-    if (!newPin) setPinError("Please enter a pin");
+    if (!newPin) setPinError("Please enter a code");
     else {
       try {
         await axios.get(
@@ -121,18 +107,17 @@ export default function GameEntering() {
 
         greatPin = true;
       } catch {
-        setPinError("This pin is not exist");
+        setPinError("This code is not exist");
       }
     }
-    if (greatName && greatPin) {
+    if (greatPin) {
       let game = await axios.get(
         `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`
       );
 
-      if (game.data.data.participants.includes(newName)) {
-        setNameError("This name exists in the game you are trying to access");
-      } else {
-        const updatedParticipants = [...game.data.data.participants, newName];
+      // if (game.data.data.participants.includes(userName)) {
+     
+        const updatedParticipants = [...game.data.data.participants, userName];
         await axios.put(
           `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
           {
@@ -144,49 +129,42 @@ export default function GameEntering() {
           await axios.put(
             `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
             {
-              admin: newName,
+              admin: userName,
             }
           );
 
           admin = true;
-          yourAdmin = newName;
-          localStorage.setItem("nameAdmin", newName);
+          yourAdmin = userName;
+          localStorage.setItem("nameAdmin", userName);
         }
         setGoRoom(true);
-        localStorage.setItem("myName", newName);
-        socket.emit("join_room", newPin, newName);
+        localStorage.setItem("myName", userName);
+        socket.emit("join_room", newPin, userName);
 
-        socket.emit("add_participant", newName, newPin, admin, yourAdmin);
+        socket.emit("add_participant", userName, newPin, admin, yourAdmin);
       }
     }
   };
-  const ValueChanged = (e) => {
-    if (e.target.id === "0") {
-      setNewName(e.target.value);
-      setNameError("");
-    } else {
+  const PinChanged = (e) => {
       setNewPin(e.target.value);
       setPinError("");
-    }
+    
   };
   return (
     <GameEnteringStyle>
       <div className="diveUp">
-        {placeHolders.map((thisInput, index) => {
-          return (
-            <div className="inputPresent" key={index}>
-              {thisInput[2]}
+        
+            <div className="inputPresent">
+              {pinError}
               <Inputs
-                openLine={thisInput[0]}
-                key={index}
-                onChange={ValueChanged}
-                value={thisInput[1]}
-                id={index}
+                openLine="Enter class code"
+                onChange={PinChanged}
+                value={newPin}
+                
               />
             </div>
-          );
-        })}
-        <Btn theValue="Enter game" theAction={CheckData} key={1} />
+          
+        <Btn theValue="Enter to class" theAction={CheckData} key={1} />
       </div>
       {goRoom && (
         <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
