@@ -6,7 +6,6 @@ import EnteringPage from "./components/EnteringPage";
 import Login from "./components/LogIn";
 import {
   GameEntering,
-  GameInfo,
   LandingPage,
   OpenPage,
   GamePresentation,
