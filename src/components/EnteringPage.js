@@ -8,7 +8,7 @@ import "../AnimationsAndDefineds.css";
 import axios from "axios";
 
 export default function EnteringPage({ startGame }) {
-  const { newName, newPin, joinsPeople, goRoom, isGameStarted } =
+  const { userName, newPin, joinsPeople, goRoom, isGameStarted } =
     useContext(StatesContext);
   const PinRender = localStorage.getItem("isAdmin");
   const adminName = localStorage.getItem("nameAdmin");
@@ -61,7 +61,7 @@ export default function EnteringPage({ startGame }) {
           })}
       </ParticipantsPresentationStyle>
 
-      {PinRender === newPin && adminName === newName && (
+      {PinRender === newPin && adminName === userName && (
         <button onClick={startGame}>admin</button>
       )}
       <div>me:{myName}</div>
