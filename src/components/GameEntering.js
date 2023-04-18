@@ -212,7 +212,7 @@ export default function GameEntering({ PinFun }) {
             key={2}
           />
 
-          {thePin !== "" && fillInput}
+          {fillInput}
           <Btn
             className="diveUp"
             theValue="Render a code"
@@ -220,7 +220,7 @@ export default function GameEntering({ PinFun }) {
             key={2}
           />
 
-          <div>{thePin && codePresent}</div>
+          <div>{thePin !== "" && codePresent}</div>
         </PinRenderStyle>
       )}
     </GameEnteringStyle>
