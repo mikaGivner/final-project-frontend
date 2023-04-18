@@ -49,7 +49,6 @@ function App() {
   }, [setInnerContent]);
 
   const startGame = useCallback(() => {
-    console.log("the user name:", userName);
     console.log("startGame called");
     socket.emit("game_started", newPin);
   }, [newPin, socket]);

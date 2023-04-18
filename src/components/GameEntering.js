@@ -92,6 +92,7 @@ export default function GameEntering() {
     };
   }, [joinsPeople, setJoinsPeople, PinRender, newPin, isGameStarted]);
   const CheckData = async () => {
+    console.log("the user name:", userName);
     let greatPin = false;
     let admin = false;
     let yourAdmin = "";
