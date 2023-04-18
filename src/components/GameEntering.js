@@ -218,10 +218,7 @@ export default function GameEntering() {
             key={2}
           />
 
-          <div>
-            {/* Your code for {newLesson} lesson to {newClass} is: {thePin} */}
-            {thePin && codePresent}
-          </div>
+          <div>{thePin && codePresent}</div>
         </PinRenderStyle>
       )}
     </GameEnteringStyle>
