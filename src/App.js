@@ -119,8 +119,6 @@ function App() {
 
         if (rememberUser) localStorage.setItem("userToRemember", userName);
         setEnterWithUser(true);
-
-        //if its a teacher- to set localhost. the to change a state to come to the entering page
       }
     }
   };
