@@ -19,7 +19,9 @@ export function StatesContextProvider(props) {
   const [pSW, setPSW] = useState("");
   const [correctName, setCorrectName] = useState("");
   const [correctPsw, setCorrectPsw] = useState("");
-
+  const [fillInput, setFillInput] = useState("");
+  const [thePin, setThePin] = useState("");
+  const [codePresent, setCodePresent] = useState("");
   const contextValue = {
     innerContent,
     setInnerContent,
@@ -55,6 +57,12 @@ export function StatesContextProvider(props) {
     setNewClass,
     newLesson,
     setNewLesson,
+    fillInput,
+    setFillInput,
+    thePin,
+    setThePin,
+    codePresent,
+    setCodePresent,
   };
 
   return (

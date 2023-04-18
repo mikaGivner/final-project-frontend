@@ -29,6 +29,16 @@ function App() {
     setUserName,
     pSW,
     setPSW,
+    fillInput,
+    setFillInput,
+    newClass,
+    setNewClass,
+    newLesson,
+    setNewLesson,
+    thePin,
+    setThePin,
+    codePresent,
+    setCodePresent,
   } = useContext(StatesContext);
   const [startSection, setStartSection] = useState(true);
   const [titleGame, setTitleGame] = useState(false);
@@ -47,6 +57,19 @@ function App() {
     }, "3500");
   }, [setInnerContent]);
 
+  useEffect(() => {
+    if (thePin !== "") {
+      setTimeout(async () => {
+        await axios.delete(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${thePin}`
+        );
+        setThePin("");
+        result = "";
+        setStartSection(true);
+      }, "180000");
+    }
+  }, [thePin]);
+
   const startGame = useCallback(() => {
     console.log("startGame called");
     socket.emit("game_started", newPin);
@@ -57,6 +80,7 @@ function App() {
       console.log("game_started event received with data:", data.message);
       setIsGameStarted(true);
     });
+
     return () => {
       socket.off("game_started");
     };
@@ -126,6 +150,45 @@ function App() {
     if (e.target.checked) setRememberUser(true);
     else setRememberUser(false);
   };
+  const PinFun = async () => {
+    setFillInput("");
+    if (newClass === "" || newLesson === "") {
+      setFillInput("Please fill all");
+    } else {
+      let result = "";
+      let characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (let i = 0; i < 5; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * characters.length)
+        );
+      }
+      try {
+        await axios.get(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
+        );
+
+        return PinFun();
+      } catch (error) {
+        localStorage.setItem("isAdmin", result);
+        let newGame = {
+          gamePin: result,
+          admin: "",
+          participants: [],
+        };
+        await axios.post(
+          `https://songs-gusses.onrender.com/api/v1/newPlay`,
+          newGame
+        );
+
+        setThePin(result);
+        setCodePresent(
+          `Your code for ${newLesson} lesson to ${newClass} is: ${thePin}`
+        );
+      }
+    }
+  };
+
   return (
     <>
       {startSection ? (
@@ -141,7 +204,7 @@ function App() {
           <EnteringPage startGame={startGame} />
         ) : (
           <OpenPage>
-            <GameEntering />
+            <GameEntering PinFun={PinFun} />
           </OpenPage>
         )
       ) : goRoom ? (
