@@ -30,7 +30,6 @@ export default function GameEntering() {
     isGameStarted,
   } = useContext(StatesContext);
 
-  
   const [thePin, setThePin] = useState("");
 
   const PinRender = localStorage.getItem("isAdmin");
@@ -96,7 +95,7 @@ export default function GameEntering() {
     let admin = false;
     let yourAdmin = "";
     setPinError("");
-      
+
     //checking a pin
     if (!newPin) setPinError("Please enter a code");
     else {
@@ -116,71 +115,68 @@ export default function GameEntering() {
       );
 
       // if (game.data.data.participants.includes(userName)) {
-     
-        const updatedParticipants = [...game.data.data.participants, userName];
+
+      const updatedParticipants = [...game.data.data.participants, userName];
+      await axios.put(
+        `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
+        {
+          participants: updatedParticipants,
+        }
+      );
+
+      if (newPin === PinRender) {
         await axios.put(
           `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
           {
-            participants: updatedParticipants,
+            admin: userName,
           }
         );
 
-        if (newPin === PinRender) {
-          await axios.put(
-            `https://songs-gusses.onrender.com/api/v1/newPlay/${newPin}`,
-            {
-              admin: userName,
-            }
-          );
-
-          admin = true;
-          yourAdmin = userName;
-          localStorage.setItem("nameAdmin", userName);
-        }
-        setGoRoom(true);
-        localStorage.setItem("myName", userName);
-        socket.emit("join_room", newPin, userName);
-
-        socket.emit("add_participant", userName, newPin, admin, yourAdmin);
+        admin = true;
+        yourAdmin = userName;
+        localStorage.setItem("nameAdmin", userName);
       }
+      setGoRoom(true);
+      localStorage.setItem("myName", userName);
+      socket.emit("join_room", newPin, userName);
+
+      socket.emit("add_participant", userName, newPin, admin, yourAdmin);
     }
   };
-  const PinChanged = (e) => {
-      setNewPin(e.target.value);
-      setPinError("");
-    
-  };
-  return (
-    <GameEnteringStyle>
-      <div className="diveUp">
-        
-            <div className="inputPresent">
-              {pinError}
-              <Inputs
-                openLine="Enter class code"
-                onChange={PinChanged}
-                value={newPin}
-                
-              />
-            </div>
-          
-        <Btn theValue="Enter to class" theAction={CheckData} key={1} />
-      </div>
-      {goRoom && (
-        <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
-      )}
-      <PinRenderStyle className="diveUp">
-        {!thePin ? (
-          <Btn
-            className="diveUp"
-            theValue="Render a code"
-            theAction={PinFun}
-            key={2}
-          />
-        ) : (
-          <div>Your pin is: {thePin}</div>
-        )}
-      </PinRenderStyle>
-    </GameEnteringStyle>
-  );
 }
+const PinChanged = (e) => {
+  setNewPin(e.target.value);
+  setPinError("");
+};
+
+return (
+  <GameEnteringStyle>
+    <div className="diveUp">
+      <div className="inputPresent">
+        {pinError}
+        <Inputs
+          openLine="Enter class code"
+          onChange={PinChanged}
+          value={newPin}
+        />
+      </div>
+
+      <Btn theValue="Enter to class" theAction={CheckData} key={1} />
+    </div>
+    {goRoom && (
+      <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
+    )}
+    <PinRenderStyle className="diveUp">
+      {!thePin ? (
+        <Btn
+          className="diveUp"
+          theValue="Render a code"
+          theAction={PinFun}
+          key={2}
+        />
+      ) : (
+        <div>Your pin is: {thePin}</div>
+      )}
+    </PinRenderStyle>
+  </GameEnteringStyle>
+);
