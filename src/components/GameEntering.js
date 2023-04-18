@@ -161,7 +161,7 @@ export default function GameEntering() {
     <GameEnteringStyle>
       <div className="diveUp">
         <div className="inputPresent">
-          <label>Enter your code</label>
+          <label>{isUser}, Enter your code</label>
           {pinError}
           <Inputs
             openLine="Enter class code"
