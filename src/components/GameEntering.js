@@ -29,11 +29,13 @@ export default function GameEntering() {
     setGoRoom,
     isGameStarted,
     userName,
+    setUserName,
   } = useContext(StatesContext);
 
   const [thePin, setThePin] = useState("");
 
   const PinRender = localStorage.getItem("isAdmin");
+  const isUser = localStorage.getItem("userToRemember");
 
   const PinFun = async () => {
     let result = "";
@@ -92,7 +94,8 @@ export default function GameEntering() {
     };
   }, [joinsPeople, setJoinsPeople, PinRender, newPin, isGameStarted]);
   const CheckData = async () => {
-    console.log("the user name:", userName);
+    if (!userName) setUserName(isUser);
+    console.log("the user is:", userName);
     let greatPin = false;
     let admin = false;
     let yourAdmin = "";
