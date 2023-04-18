@@ -138,15 +138,15 @@ function App() {
             CheckName={CheckName}
             ToRemember={ToRemember}
           />
+        ) : goRoom ? (
+          <EnteringPage startGame={startGame} />
         ) : (
           <OpenPage>
-            {/* <GamePresentation className="diveUp">
-              {titleGame && <GameInfo />}
-            </GamePresentation> */}
-
             <GameEntering />
           </OpenPage>
         )
+      ) : goRoom ? (
+        <EnteringPage startGame={startGame} />
       ) : (
         <OpenPage>
           <GameEntering />
