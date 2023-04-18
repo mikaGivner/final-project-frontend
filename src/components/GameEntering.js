@@ -69,6 +69,9 @@ export default function GameEntering() {
     }
   };
   useEffect(() => {
+    if ((userName = "")) setUserName(isUser);
+  }, []);
+  useEffect(() => {
     if (PinRender) {
       setThePin(PinRender);
     }
@@ -94,7 +97,6 @@ export default function GameEntering() {
     };
   }, [joinsPeople, setJoinsPeople, PinRender, newPin, isGameStarted]);
   const CheckData = async () => {
-    if (isUser !== "") setUserName(isUser);
     console.log("the user is:", userName);
     let greatPin = false;
     let admin = false;
