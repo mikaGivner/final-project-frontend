@@ -149,10 +149,6 @@ function App() {
         )
       ) : (
         <OpenPage>
-          {/* <GamePresentation className="diveUp">
-            {titleGame && <GameInfo />}
-          </GamePresentation> */}
-
           <GameEntering />
         </OpenPage>
       )}
