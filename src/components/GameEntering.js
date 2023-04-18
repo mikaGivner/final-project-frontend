@@ -192,7 +192,6 @@ export default function GameEntering({ PinFun }) {
             key={0}
           />
         </div>
-        {fillInput}
         <Btn theValue="Enter to class" theAction={CheckData} key={1} />
       </div>
       {teacher && (
@@ -213,6 +212,7 @@ export default function GameEntering({ PinFun }) {
             key={2}
           />
 
+          {fillInput}
           <Btn
             className="diveUp"
             theValue="Render a code"
