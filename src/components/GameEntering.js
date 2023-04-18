@@ -162,7 +162,7 @@ export default function GameEntering() {
   };
   const ClassChanged = (e) => {
     console.log(e.target);
-    if (e.target.openLine === "Layer and class number")
+    if (e.target.placeholder === "Layer and class number")
       setNewClass(e.target.value);
     else setNewLesson(e.target.value);
   };
