@@ -151,44 +151,44 @@ function App() {
     if (e.target.checked) setRememberUser(true);
     else setRememberUser(false);
   };
-  const PinFun = async () => {
-    setFillInput("");
-    if (newClass === "" || newLesson === "") {
-      setFillInput("Please fill all");
-    } else {
-      result = "";
-      let characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      for (let i = 0; i < 5; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * characters.length)
-        );
-      }
-      try {
-        await axios.get(
-          `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
-        );
+  // const PinFun = async () => {
+  //   setFillInput("");
+  //   if (newClass === "" || newLesson === "") {
+  //     setFillInput("Please fill all");
+  //   } else {
+  //     result = "";
+  //     let characters =
+  //       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //     for (let i = 0; i < 5; i++) {
+  //       result += characters.charAt(
+  //         Math.floor(Math.random() * characters.length)
+  //       );
+  //     }
+  //     try {
+  //       await axios.get(
+  //         `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
+  //       );
 
-        return PinFun();
-      } catch (error) {
-        localStorage.setItem("isAdmin", result);
-        let newGame = {
-          gamePin: result,
-          admin: "",
-          participants: [],
-        };
-        await axios.post(
-          `https://songs-gusses.onrender.com/api/v1/newPlay`,
-          newGame
-        );
+  //       return PinFun();
+  //     } catch (error) {
+  //       localStorage.setItem("isAdmin", result);
+  //       let newGame = {
+  //         gamePin: result,
+  //         admin: "",
+  //         participants: [],
+  //       };
+  //       await axios.post(
+  //         `https://songs-gusses.onrender.com/api/v1/newPlay`,
+  //         newGame
+  //       );
 
-        setThePin(result);
-        setCodePresent(
-          `Your code for ${newLesson} lesson to ${newClass} is: ${thePin}`
-        );
-      }
-    }
-  };
+  //       setThePin(result);
+  //       setCodePresent(
+  //         `Your code for ${newLesson} lesson to ${newClass} is: ${thePin}`
+  //       );
+  //     }
+  //   }
+  // };
 
   return (
     <>
@@ -205,7 +205,7 @@ function App() {
           <EnteringPage startGame={startGame} />
         ) : (
           <OpenPage>
-            <GameEntering PinFun={PinFun} />
+            <GameEntering />
           </OpenPage>
         )
       ) : goRoom ? (
@@ -215,24 +215,6 @@ function App() {
           <GameEntering />
         </OpenPage>
       )}
-
-      {/* {goRoom ? (
-            !isGameStarted ? (
-              <EnteringPage startGame={startGame} />
-            ) : (
-              <div>hey</div>
-            )
-          ) : (
-            <OpenPage>
-              <GamePresentation className="diveUp">
-                {titleGame && <GameInfo />}
-              </GamePresentation>
-
-              <GameEntering />
-            </OpenPage>
-          )}
-        </>
-      )} */}
     </>
   );
 }

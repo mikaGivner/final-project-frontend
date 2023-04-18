@@ -10,7 +10,7 @@ import io from "socket.io-client";
 const socket = io.connect("https://songs-gusses.onrender.com", {
   transports: ["websocket"],
 });
-export default function GameEntering({ PinFun }) {
+export default function GameEntering() {
   // const [goRoom, setGoRoom] = useState(false);
   //const { GetPin } = useResult();
 
@@ -46,44 +46,44 @@ export default function GameEntering({ PinFun }) {
   const isUser = localStorage.getItem("userToRemember");
   let teacher = localStorage.getItem("isTeacher");
 
-  // const PinFun = async () => {
-  //   setFillInput("");
-  //   if (newClass === "" || newLesson === "") {
-  //     setFillInput("Please fill all");
-  //   } else {
-  //     let result = "";
-  //     let characters =
-  //       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  //     for (let i = 0; i < 5; i++) {
-  //       result += characters.charAt(
-  //         Math.floor(Math.random() * characters.length)
-  //       );
-  //     }
-  //     try {
-  //       await axios.get(
-  //         `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
-  //       );
+  const PinFun = async () => {
+    setFillInput("");
+    if (newClass === "" || newLesson === "") {
+      setFillInput("Please fill all");
+    } else {
+      let result = "";
+      let characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (let i = 0; i < 5; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * characters.length)
+        );
+      }
+      try {
+        await axios.get(
+          `https://songs-gusses.onrender.com/api/v1/newPlay/${result}`
+        );
 
-  //       return PinFun();
-  //     } catch (error) {
-  //       localStorage.setItem("isAdmin", result);
-  //       let newGame = {
-  //         gamePin: result,
-  //         admin: "",
-  //         participants: [],
-  //       };
-  //       await axios.post(
-  //         `https://songs-gusses.onrender.com/api/v1/newPlay`,
-  //         newGame
-  //       );
+        return PinFun();
+      } catch (error) {
+        localStorage.setItem("isAdmin", result);
+        let newGame = {
+          gamePin: result,
+          admin: "",
+          participants: [],
+        };
+        await axios.post(
+          `https://songs-gusses.onrender.com/api/v1/newPlay`,
+          newGame
+        );
 
-  //       setThePin(result);
-  //       setCodePresent(
-  //         `Your code for ${newLesson} lesson to ${newClass} is: ${result}`
-  //       );
-  //     }
-  //   }
-  // };
+        setThePin(result);
+        setCodePresent(
+          `Your code for ${newLesson} lesson to ${newClass} is: ${result}`
+        );
+      }
+    }
+  };
   useEffect(() => {
     if (userName === "") setUserName(isUser);
   }, []);
