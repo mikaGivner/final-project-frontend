@@ -85,11 +85,11 @@ export default function GameEntering() {
   useEffect(() => {
     if (userName === "") setUserName(isUser);
   }, []);
-  useEffect(() => {
-    if (PinRender) {
-      setThePin(PinRender);
-    }
-  }, [PinRender]);
+  // useEffect(() => {
+  //   if (PinRender) {
+  //     setThePin(PinRender);
+  //   }
+  // }, [PinRender]);
   useEffect(() => {
     console.log(joinsPeople);
     console.log(typeof joinsPeople);
@@ -220,7 +220,7 @@ export default function GameEntering() {
 
           <div>
             {/* Your code for {newLesson} lesson to {newClass} is: {thePin} */}
-            {codePresent}
+            {thePin && codePresent}
           </div>
         </PinRenderStyle>
       )}
