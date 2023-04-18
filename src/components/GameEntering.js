@@ -28,6 +28,7 @@ export default function GameEntering() {
     goRoom,
     setGoRoom,
     isGameStarted,
+    userName,
   } = useContext(StatesContext);
 
   const [thePin, setThePin] = useState("");
@@ -143,40 +144,41 @@ export default function GameEntering() {
       socket.emit("add_participant", userName, newPin, admin, yourAdmin);
     }
   };
-}
-const PinChanged = (e) => {
-  setNewPin(e.target.value);
-  setPinError("");
-};
 
-return (
-  <GameEnteringStyle>
-    <div className="diveUp">
-      <div className="inputPresent">
-        {pinError}
-        <Inputs
-          openLine="Enter class code"
-          onChange={PinChanged}
-          value={newPin}
-        />
+  const PinChanged = (e) => {
+    setNewPin(e.target.value);
+    setPinError("");
+  };
+
+  return (
+    <GameEnteringStyle>
+      <div className="diveUp">
+        <div className="inputPresent">
+          {pinError}
+          <Inputs
+            openLine="Enter class code"
+            onChange={PinChanged}
+            value={newPin}
+          />
+        </div>
+
+        <Btn theValue="Enter to class" theAction={CheckData} key={1} />
       </div>
-
-      <Btn theValue="Enter to class" theAction={CheckData} key={1} />
-    </div>
-    {goRoom && (
-      <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
-    )}
-    <PinRenderStyle className="diveUp">
-      {!thePin ? (
-        <Btn
-          className="diveUp"
-          theValue="Render a code"
-          theAction={PinFun}
-          key={2}
-        />
-      ) : (
-        <div>Your pin is: {thePin}</div>
+      {goRoom && (
+        <div style={{ color: "#fff" }}>people who join: {joinsPeople}</div>
       )}
-    </PinRenderStyle>
-  </GameEnteringStyle>
-);
+      <PinRenderStyle className="diveUp">
+        {!thePin ? (
+          <Btn
+            className="diveUp"
+            theValue="Render a code"
+            theAction={PinFun}
+            key={2}
+          />
+        ) : (
+          <div>Your pin is: {thePin}</div>
+        )}
+      </PinRenderStyle>
+    </GameEnteringStyle>
+  );
+}
