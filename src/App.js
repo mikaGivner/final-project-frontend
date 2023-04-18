@@ -182,8 +182,8 @@ function App() {
           newGame
         );
 
-        await setThePin(result);
-        await setCodePresent(
+        setThePin(result);
+        setCodePresent(
           `Your code for ${newLesson} lesson to ${newClass} is: ${thePin}`
         );
       }
