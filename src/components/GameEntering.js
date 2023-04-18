@@ -30,6 +30,10 @@ export default function GameEntering() {
     isGameStarted,
     userName,
     setUserName,
+    newClass,
+    setNewClass,
+    newLesson,
+    setNewLesson,
   } = useContext(StatesContext);
 
   const [thePin, setThePin] = useState("");
@@ -156,34 +160,57 @@ export default function GameEntering() {
     setNewPin(e.target.value);
     setPinError("");
   };
+  const ClassChanged = (e) => {
+    console.log(e.target);
+    if (e.target.openLine === "Layer and class number")
+      setNewClass(e.target.value);
+    else setNewLesson(e.target.value);
+  };
 
   return (
     <GameEnteringStyle>
       <div className="diveUp">
         <div className="inputPresent">
-          <label>{userName}, Enter your code</label>
+          <label>{userName}, enter your code</label>
           {pinError}
           <Inputs
             openLine="Enter class code"
             onChange={PinChanged}
             value={newPin}
+            key={0}
           />
         </div>
 
         <Btn theValue="Enter to class" theAction={CheckData} key={1} />
       </div>
       {teacher && (
+        //grad, num & class-it will be the name of the file
         <PinRenderStyle className="diveUp">
-          {!thePin ? (
-            <Btn
-              className="diveUp"
-              theValue="Render a code"
-              theAction={PinFun}
-              key={2}
-            />
-          ) : (
-            <div>Your pin is: {thePin}</div>
-          )}
+          <lable>class:</lable>
+          <Inputs
+            openLine="Layer and class number"
+            onChange={ClassChanged}
+            value={newClass}
+            key={1}
+          />
+          <lable>Which lesson:</lable>
+          <Inputs
+            openLine="Subject you gonna teach"
+            onChange={ClassChanged}
+            value={newLesson}
+            key={2}
+          />
+
+          <Btn
+            className="diveUp"
+            theValue="Render a code"
+            theAction={PinFun}
+            key={2}
+          />
+
+          <div>
+            Your code for {newLesson} lesson to {newClass} is: {thePin}
+          </div>
         </PinRenderStyle>
       )}
     </GameEnteringStyle>

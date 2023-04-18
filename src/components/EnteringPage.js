@@ -50,7 +50,7 @@ export default function EnteringPage({ startGame }) {
   let teacher = localStorage.getItem("isTeacher");
   return (
     <EnteringPageStyle>
-      <h1 style={{ color: "#000" }}>Participants for this game</h1>
+      <h1 style={{ color: "#000" }}>Participants for this lesson</h1>
       <ParticipantsPresentationStyle>
         {goRoom &&
           joinsPeople.length !== 0 &&

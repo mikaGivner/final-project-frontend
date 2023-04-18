@@ -2,7 +2,7 @@ import styled from "styled-components";
 import "../AnimationsAndDefineds.css";
 export const PinRenderStyle = styled.div`
   padding: 3rem;
-  width: 50%;
+  width: 100%;
   height: 10rem;
   background: #000;
   display: flex;

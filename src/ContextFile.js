@@ -2,6 +2,8 @@ import React, { createContext, useState } from "react";
 export const StatesContext = createContext();
 export function StatesContextProvider(props) {
   const [innerContent, setInnerContent] = useState(false);
+  const [newClass, setNewClass] = useState("");
+  const [newLesson, setNewLesson] = useState("");
   const [newPin, setNewPin] = useState("");
   const [newName, setNewName] = useState("");
   const [nameError, setNameError] = useState("");
@@ -49,6 +51,10 @@ export function StatesContextProvider(props) {
     setCorrectName,
     correctPsw,
     setCorrectPsw,
+    newClass,
+    setNewClass,
+    newLesson,
+    setNewLesson,
   };
 
   return (
